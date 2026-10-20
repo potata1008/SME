@@ -1,0 +1,6 @@
+# Development: the AI service plus test and analysis tools.
+# The deployed service installs only ai/requirements.txt.
+-r ai/requirements.txt
+matplotlib>=3.7
+pytest>=7.4
+httpx>=0.26

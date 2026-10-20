@@ -1,0 +1,29 @@
+node_modules
+.env
+.env.*
+!.env.example
+secrets_for_team.txt
+cache
+artifacts
+typechain-types
+coverage
+coverage.json
+deployments/*
+!deployments/amoy.json
+AI_VALIDATION_RECONCILIATION
+
+
+# Python / tooling
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Circuit build intermediates and compiler binary
+circuits/circom.exe
+*.wtns
+
+# Local-only: demo video and its sources, editor/agent tooling
+demo-video/
+.claude/
