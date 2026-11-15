@@ -35,7 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       appId={import.meta.env.VITE_PRIVY_APP_ID}
       config={{
         loginMethods: ['email', 'google', 'wallet'],
-        appearance: { theme: 'light', accentColor: '#10b981' },
+        appearance: { theme: 'light', accentColor: '#2456E6' },
         embeddedWallets: {
           createOnLogin: 'users-without-wallets', // auto-create for email/social users
         },

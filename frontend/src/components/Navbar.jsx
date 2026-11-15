@@ -25,22 +25,16 @@ export function ConnectWalletButton() {
     </div>
   )
 
-  return <button onClick={login} className="btn btn-chain" style={{ padding: '0.45rem 1.1rem', fontSize: '0.78rem' }}>Connect Wallet</button>
+  return <button onClick={login} className="btn btn-chain" style={{ padding: '0.45rem 1.1rem', fontSize: '0.78rem' }}>Sign in</button>
 }
 
-function BioTokenLogo() {
+function TraceRxLogo() {
   return (
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Hexagon frame */}
-      <path d="M14 2L24.39 7.5V18.5L14 24L3.61 18.5V7.5L14 2Z"
-        stroke="#00C896" strokeWidth="1.5" strokeLinejoin="round" fill="rgba(0,200,150,0.06)" />
-      {/* DNA helix suggestion */}
-      <circle cx="14" cy="9" r="1.5" fill="#00C896" />
-      <circle cx="14" cy="14" r="1.5" fill="#4F46E5" />
-      <circle cx="14" cy="19" r="1.5" fill="#00C896" />
-      <path d="M10 9 Q14 11.5 18 9" stroke="#00C896" strokeWidth="1" strokeLinecap="round" fill="none" opacity="0.5" />
-      <path d="M10 19 Q14 16.5 18 19" stroke="#00C896" strokeWidth="1" strokeLinecap="round" fill="none" opacity="0.5" />
-      <line x1="14" y1="9" x2="14" y2="19" stroke="#9CA3AF" strokeWidth="0.75" strokeDasharray="1.5 1.5" />
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="32" height="32" rx="7" fill="#0F172A" />
+      <path d="M8 21.5h5.5l5-11H24" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="8" cy="21.5" r="2.6" fill="#fff" />
+      <circle cx="24" cy="10.5" r="3" fill="#2456E6" stroke="#fff" strokeWidth="1.4" />
     </svg>
   );
 }
@@ -68,9 +62,9 @@ export default function Navbar() {
 
   // Role badge
   const roleBadge = role === 'lab'
-    ? { label: 'LAB', color: '#00C896' }
+    ? { label: 'LAB', color: '#2456E6' }
     : role === 'manufacturer'
-    ? { label: 'MFR', color: '#4F46E5' }
+    ? { label: 'MFR', color: '#0F172A' }
     : null;
 
   const isActive = (path) => location.pathname === path;
@@ -79,7 +73,7 @@ export default function Navbar() {
     <>
       <nav style={{
         borderBottom: '1px solid var(--border)',
-        background: 'rgba(248,247,244,0.92)',
+        background: 'rgba(247,248,250,0.92)',
         backdropFilter: 'blur(14px)',
         WebkitBackdropFilter: 'blur(14px)',
         position: 'sticky',
@@ -96,22 +90,15 @@ export default function Navbar() {
               textDecoration: 'none', color: 'var(--text)',
             }}
           >
-            <BioTokenLogo />
+            <TraceRxLogo />
             <span style={{
               fontFamily: 'var(--font-display)', fontWeight: 700,
-              fontSize: '1.05rem', letterSpacing: '-0.01em',
-            }}>BioToken</span>
-            <span style={{
-              fontFamily: 'var(--font-mono)', fontSize: '0.62rem',
-              fontWeight: 600, color: 'var(--accent-dim)',
-              background: 'rgba(0,200,150,0.1)', border: '1px solid rgba(0,200,150,0.25)',
-              borderRadius: '9999px', padding: '0.1rem 0.5rem',
-              letterSpacing: '0.08em', textTransform: 'uppercase',
-            }}>v1.0</span>
+              fontSize: '1.05rem', letterSpacing: '-0.02em',
+            }}>TraceRx</span>
             {/* Role badge */}
             {roleBadge && (
               <span style={{
-                fontFamily: 'var(--font-mono)', fontSize: '0.58rem',
+                fontFamily: 'var(--font-body)', fontSize: '0.58rem',
                 fontWeight: 700, color: roleBadge.color,
                 background: `${roleBadge.color}12`,
                 border: `1px solid ${roleBadge.color}30`,
@@ -130,13 +117,13 @@ export default function Navbar() {
                 style={{
                   display: 'flex', alignItems: 'center', gap: '0.4rem',
                   padding: '0.45rem 0.9rem',
-                  borderRadius: 'var(--radius-full)',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.78rem', fontWeight: 600,
+                  borderRadius: 'var(--radius-md)',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.82rem', fontWeight: 500,
                   letterSpacing: '0.02em',
                   color: isActive(link.path) ? 'var(--accent-dim)' : 'var(--text-muted)',
-                  background: isActive(link.path) ? 'rgba(0,200,150,0.08)' : 'transparent',
-                  border: isActive(link.path) ? '1px solid rgba(0,200,150,0.2)' : '1px solid transparent',
+                  background: isActive(link.path) ? 'rgba(36,86,230,0.08)' : 'transparent',
+                  border: isActive(link.path) ? '1px solid rgba(36,86,230,0.2)' : '1px solid transparent',
                   transition: 'all 0.18s',
                   textDecoration: 'none',
                 }}
@@ -183,9 +170,9 @@ export default function Navbar() {
                 style={{
                   display: 'flex', alignItems: 'center', gap: '0.6rem',
                   padding: '0.75rem 1rem', borderRadius: 'var(--radius-md)',
-                  fontFamily: 'var(--font-mono)', fontSize: '0.85rem', fontWeight: 600,
+                  fontFamily: 'var(--font-body)', fontSize: '0.85rem', fontWeight: 600,
                   color: isActive(link.path) ? 'var(--accent-dim)' : 'var(--text)',
-                  background: isActive(link.path) ? 'rgba(0,200,150,0.06)' : 'transparent',
+                  background: isActive(link.path) ? 'rgba(36,86,230,0.06)' : 'transparent',
                   textDecoration: 'none',
                 }}
               >

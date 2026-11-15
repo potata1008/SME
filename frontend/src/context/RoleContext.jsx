@@ -182,9 +182,9 @@ export function RoleProvider({ children }) {
         setStatus('error');
         setLoadError(
           timedOut
-            ? 'The BioToken server did not answer in time. It may still be starting up — try again in a moment.'
+            ? 'The TraceRx server did not answer in time. It may still be starting up — try again in a moment.'
             : err instanceof TypeError
-              ? `Could not reach the BioToken server at ${AI_API_URL}. Check that it is running.`
+              ? `Could not reach the TraceRx server at ${AI_API_URL}. Check that it is running.`
               : err.message || 'Could not load your account.'
         );
       } finally {

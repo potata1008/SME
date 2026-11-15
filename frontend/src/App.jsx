@@ -24,8 +24,8 @@ function Spinner({ label, hint }) {
       alignItems: 'center', justifyContent: 'center',
       gap: '1.25rem', padding: '2rem', textAlign: 'center',
     }}>
-      <Loader2 size={36} color="#00C896" style={{ animation: 'spin 1s linear infinite' }} />
-      <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.85rem', color: '#6B7280' }}>
+      <Loader2 size={36} color="#2456E6" style={{ animation: 'spin 1s linear infinite' }} />
+      <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.85rem', color: '#6B7280' }}>
         {label}
       </div>
       {hint && (
@@ -43,7 +43,7 @@ function StatusScreen({ icon, title, children, actions }) {
       padding: '2rem', textAlign: 'center',
     }}>
       {icon}
-      <h1 style={{ fontFamily: "'Libre Baskerville', serif", color: '#0d1f1a', fontSize: '1.6rem' }}>{title}</h1>
+      <h1 style={{ fontFamily: 'var(--font-display)', color: '#0F172A', fontSize: '1.6rem' }}>{title}</h1>
       <div style={{ color: '#6B7280', maxWidth: 520, lineHeight: 1.6 }}>{children}</div>
       <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
         {actions}
@@ -113,7 +113,7 @@ export default function App() {
       gate = (
         <Spinner
           label="Loading your account…"
-          hint={slow ? 'The BioToken server is waking up. On free hosting this can take up to a minute after a quiet period.' : null}
+          hint={slow ? 'The TraceRx server is waking up. On free hosting this can take up to a minute after a quiet period.' : null}
         />
       );
     } else if (status === 'no-wallet') {
@@ -143,7 +143,7 @@ export default function App() {
           {!hasWallet
             ? 'This account has no wallet yet. Create one to continue.'
             : isEmbedded
-              ? 'Your BioToken wallet is taking too long to start. Reloading the page usually fixes this.'
+              ? 'Your TraceRx wallet is taking too long to start. Reloading the page usually fixes this.'
               : 'Your external wallet is locked or disconnected. Unlock it and reconnect.'}
           {walletActionError && (
             <div className="alert-banner alert-banner--error" style={{ marginTop: '1rem' }}>{walletActionError}</div>
@@ -171,7 +171,7 @@ export default function App() {
     } else if (status === 'pending') {
       gate = (
         <StatusScreen
-          icon={<Loader2 size={36} color="#00C896" style={{ animation: 'spin 1s linear infinite' }} />}
+          icon={<Loader2 size={36} color="#2456E6" style={{ animation: 'spin 1s linear infinite' }} />}
           title={awaitingApproval ? 'Role registration awaiting approval' : 'Role registration pending on-chain confirmation'}
           actions={<>
             <button type="button" onClick={retryRoleGrant} disabled={isRegistering} className="btn btn-primary">

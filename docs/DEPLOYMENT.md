@@ -1,11 +1,11 @@
-# Deploying BioToken on Render
+# Deploying TraceRx on Render
 
-This guide puts the two off-chain parts of BioToken on [Render](https://render.com). The smart contracts are already on Polygon Amoy.
+This guide puts the two off-chain parts of TraceRx on [Render](https://render.com). The smart contracts are already on Polygon Amoy.
 
 | Render service | What it is | Defined in |
 |---|---|---|
-| `biotoken-api` | FastAPI AI service ([ai/api.py](../ai/api.py)): AI verdicts signed by the oracle key, role registration | [render.yaml](../render.yaml) |
-| `biotoken-web` | React app ([frontend/](../frontend/)), built by Vite and served as a static site | [render.yaml](../render.yaml) |
+| `tracerx-api` | FastAPI AI service ([ai/api.py](../ai/api.py)): AI verdicts signed by the oracle key, role registration | [render.yaml](../render.yaml) |
+| `tracerx-web` | React app ([frontend/](../frontend/)), built by Vite and served as a static site | [render.yaml](../render.yaml) |
 | (external) | Polygon Amoy contracts: BioToken `0x59B06aE32e732bb3D91b0F301af6791A0C98b202`, HplcVerifier `0xA44699310aE4599cF43C1dBe68B227f3cb4E16DA` | [deployments/amoy.json](../deployments/amoy.json) |
 | (external) | MongoDB (e.g. Atlas), Privy, Pimlico | their dashboards |
 
@@ -30,24 +30,24 @@ Both services read the contract address and ABI from the committed `deployments/
 
    | Service | Variable | Value |
    |---|---|---|
-   | biotoken-api | `DEPLOYER_PRIVATE_KEY` | admin key |
-   | biotoken-api | `AI_ORACLE_PRIVATE_KEY` | oracle key |
-   | biotoken-api | `MONGODB_URI` | Atlas connection string |
-   | biotoken-web | `VITE_PRIVY_APP_ID` | Privy app id |
-   | biotoken-web | `VITE_PIMLICO_API_KEY` | Pimlico API key |
-   | biotoken-web | `VITE_PIMLICO_POLICY_ID` | Pimlico sponsorship policy id |
+   | tracerx-api | `DEPLOYER_PRIVATE_KEY` | admin key |
+   | tracerx-api | `AI_ORACLE_PRIVATE_KEY` | oracle key |
+   | tracerx-api | `MONGODB_URI` | Atlas connection string |
+   | tracerx-web | `VITE_PRIVY_APP_ID` | Privy app id |
+   | tracerx-web | `VITE_PIMLICO_API_KEY` | Pimlico API key |
+   | tracerx-web | `VITE_PIMLICO_POLICY_ID` | Pimlico sponsorship policy id |
 
-   Set automatically: `ADMIN_API_TOKEN` (random), `ROLE_AUTO_APPROVE=true`, `AMOY_RPC_URL`, `PYTHON_VERSION`, `NODE_VERSION`. The two services point at each other's public URLs: the web app's `VITE_AI_API_URL` is `https://biotoken-api.onrender.com`, and the API's `CORS_ORIGINS` is `https://biotoken-web.onrender.com`. (Render's `fromService … property: host` is not used: it gives the internal service name, which browsers cannot reach.) If Render gives a service a different URL, or you add a custom domain, change these two values.
+   Set automatically: `ADMIN_API_TOKEN` (random), `ROLE_AUTO_APPROVE=true`, `AMOY_RPC_URL`, `PYTHON_VERSION`, `NODE_VERSION`. The two services point at each other's public URLs: the web app's `VITE_AI_API_URL` is `https://tracerx-api.onrender.com`, and the API's `CORS_ORIGINS` is `https://tracerx-web.onrender.com`. (Render's `fromService … property: host` is not used: it gives the internal service name, which browsers cannot reach.) If Render gives a service a different URL, or you add a custom domain, change these two values.
 3. **Apply**. The first API build takes several minutes (RDKit, XGBoost, scikit-learn wheels); the web build about two minutes.
 
 ## 3. After the first deploy
 
-1. **Privy dashboard → Settings → Allowed origins**: add `https://biotoken-web.onrender.com` (or your custom domain). Without it, login fails. Today the app allows only `http://localhost:5173` (seen in the browser console as a blocked `frame-ancestors` for `auth.privy.io`); that is also why login only works on `localhost:5173`, not `127.0.0.1` or `vite preview`'s port 4173.
+1. **Privy dashboard → Settings → Allowed origins**: add `https://tracerx-web.onrender.com` (or your custom domain). Without it, login fails. Today the app allows only `http://localhost:5173` (seen in the browser console as a blocked `frame-ancestors` for `auth.privy.io`); that is also why login only works on `localhost:5173`, not `127.0.0.1` or `vite preview`'s port 4173.
 2. **Pimlico dashboard**: restrict the API key to the web app's origin and set spending limits on the sponsorship policy. The key is shipped to every browser.
 3. **Run the smoke test** from your machine:
 
    ```bash
-   npm run smoke -- --api https://biotoken-api.onrender.com --web https://biotoken-web.onrender.com
+   npm run smoke -- --api https://tracerx-api.onrender.com --web https://tracerx-web.onrender.com
    ```
 
    It checks, read-only:
@@ -62,7 +62,7 @@ Both services read the contract address and ABI from the committed `deployments/
 
 ## 4. Configuration reference
 
-**biotoken-api**
+**tracerx-api**
 
 | Variable | Required | Notes |
 |---|---|---|
@@ -76,13 +76,13 @@ Both services read the contract address and ABI from the committed `deployments/
 | `CONTRACT_ADDRESS` | no | Overrides `deployments/amoy.json` |
 | `PYTHON_VERSION` | – | `3.13`; dependencies are pinned in [ai/requirements.txt](../ai/requirements.txt) |
 
-**biotoken-web** (read at build time; changing one needs a redeploy of the static site)
+**tracerx-web** (read at build time; changing one needs a redeploy of the static site)
 
 | Variable | Required | Notes |
 |---|---|---|
 | `VITE_PRIVY_APP_ID` | yes | |
 | `VITE_PIMLICO_API_KEY`, `VITE_PIMLICO_POLICY_ID` | yes | |
-| `VITE_AI_API_URL` | yes | Public URL of the API service (e.g. `https://biotoken-api.onrender.com` or a custom domain); `VITE_AI_API_HOST` (bare host) also works |
+| `VITE_AI_API_URL` | yes | Public URL of the API service (e.g. `https://tracerx-api.onrender.com` or a custom domain); `VITE_AI_API_HOST` (bare host) also works |
 | `VITE_AMOY_RPC_URL` | no | Read-only chain calls from the browser |
 | `VITE_CONTRACT_ADDRESS` | no | Overrides `deployments/amoy.json` |
 | `NODE_VERSION` | – | `22` (Vite 8 needs ≥ 20.19) |
