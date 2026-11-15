@@ -1,48 +1,45 @@
-/* ============================================================
-   BioToken Design System — "Clinical Precision meets Cryptographic Depth"
-   Light Theme | IBM Plex Mono + Fraunces
-   ============================================================ */
+/* TraceRx styles. IBM Plex Sans for text, IBM Plex Mono for hashes and addresses. */
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
 /* ── Design Tokens ─────────────────────────────────────────── */
 :root {
   /* Backgrounds */
-  --bg:          #F8F7F4;   /* warm off-white page bg */
+  --bg:          #F7F8FA;   /* cool off-white page bg */
   --surface:     #FFFFFF;   /* card surfaces */
-  --surface-alt: #F3F2EF;   /* slightly tinted alt surface */
+  --surface-alt: #F1F3F6;   /* slightly tinted alt surface */
   --bg-dark:     #0A0A0A;   /* near-black — footer / hero overlay */
 
   /* Brand Colors */
-  --accent:      #00C896;   /* biotech green — verified / active */
-  --accent-dim:  #00A87E;   /* darker green for hover */
-  --chain:       #4F46E5;   /* Polygon purple-blue — blockchain */
-  --chain-dim:   #3730A3;   /* darker chain */
+  --accent:      #2456E6;   /* brand blue: verified / active */
+  --accent-dim:  #1B44C0;   /* darker blue for hover */
+  --chain:       #0F172A;   /* ink: primary buttons, on-chain values */
+  --chain-dim:   #020617;
   --alert:       #FF4D4D;   /* anomaly / tampered */
   --warning:     #F59E0B;   /* in-transit / caution */
 
   /* Text */
-  --text:        #0A0A0A;   /* near-black primary text */
+  --text:        #0F172A;   /* near-black primary text */
   --text-muted:  #6B7280;   /* secondary text */
   --text-faint:  #9CA3AF;   /* placeholder / hint */
-  --text-invert: #F8F7F4;   /* on dark surfaces */
+  --text-invert: #F7F8FA;   /* on dark surfaces */
 
   /* Borders & Dividers */
-  --border:      #E5E3DF;
-  --border-strong: #C9C7C2;
+  --border:      #E3E6EB;
+  --border-strong: #C5CAD3;
 
   /* Typography */
-  --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-sans:    'IBM Plex Mono', system-ui, sans-serif;
+  --font-body:    'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --font-sans:    var(--font-body);
 
   /* Shadows */
-  --shadow-sm:  0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md:  0 4px 12px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
-  --shadow-lg:  0 12px 32px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
-  --shadow-accent: 0 8px 24px rgba(0,200,150,0.20);
-  --shadow-chain:  0 8px 24px rgba(79,70,229,0.20);
+  --shadow-sm:  0 1px 2px rgba(15,23,42,0.05);
+  --shadow-md:  0 4px 14px rgba(15,23,42,0.07);
+  --shadow-lg:  0 12px 32px rgba(15,23,42,0.10);
+  --shadow-accent: 0 1px 2px rgba(36,86,230,0.25);
+  --shadow-chain:  0 1px 2px rgba(15,23,42,0.25);
 
   /* Spacing Scale */
   --space-1: 0.25rem;
@@ -55,10 +52,10 @@
   --space-16: 4rem;
 
   /* Radius */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1.25rem;
-  --radius-xl: 2rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
   --radius-full: 9999px;
 }
 
@@ -76,7 +73,7 @@ html {
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
@@ -87,6 +84,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 600;
+  letter-spacing: -0.015em;
   line-height: 1.2;
   color: var(--text);
 }
@@ -141,7 +139,6 @@ img, svg { display: block; }
 }
 
 .lab-card:hover {
-  transform: translateY(-3px);
   box-shadow: var(--shadow-md);
   border-color: var(--border-strong);
 }
@@ -173,7 +170,6 @@ img, svg { display: block; }
 }
 
 .glass-card:hover {
-  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
@@ -188,7 +184,7 @@ img, svg { display: block; }
 }
 
 .page-subtitle {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   color: var(--text-muted);
   font-size: 0.95rem;
   margin-bottom: var(--space-8);
@@ -197,12 +193,12 @@ img, svg { display: block; }
 }
 
 .section-label {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-dim);
   margin-bottom: var(--space-3);
 }
 
@@ -222,7 +218,7 @@ img, svg { display: block; }
 
 .form-label {
   display: block;
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -246,7 +242,7 @@ img, svg { display: block; }
 
 .form-input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(0,200,150,0.12);
+  box-shadow: 0 0 0 3px rgba(36,86,230,0.12);
 }
 
 .form-input::placeholder {
@@ -257,7 +253,7 @@ img, svg { display: block; }
   font-size: 0.76rem;
   color: var(--text-faint);
   margin-top: var(--space-1);
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
 }
 
 /* ── Buttons ────────────────────────────────────────────────── */
@@ -267,11 +263,11 @@ img, svg { display: block; }
   justify-content: center;
   gap: var(--space-2);
   padding: 0.7rem 1.5rem;
-  border-radius: var(--radius-full);
-  font-family: var(--font-mono);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.82rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
   cursor: pointer;
   transition: all 0.22s ease;
   border: none;
@@ -306,8 +302,7 @@ img, svg { display: block; }
 
 .btn-accent:not(:disabled):hover {
   background: var(--accent-dim);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(0,200,150,0.30);
+  box-shadow: 0 2px 8px rgba(36,86,230,0.28);
   color: #fff;
 }
 
@@ -319,8 +314,7 @@ img, svg { display: block; }
 
 .btn-chain:not(:disabled):hover {
   background: var(--chain-dim);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(79,70,229,0.30);
+  box-shadow: 0 2px 8px rgba(15,23,42,0.28);
   color: #fff;
 }
 
@@ -354,7 +348,7 @@ img, svg { display: block; }
   gap: 0.375rem;
   padding: 0.3rem 0.85rem;
   border-radius: var(--radius-full);
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -362,9 +356,9 @@ img, svg { display: block; }
 }
 
 .nft-badge--minted {
-  background: rgba(79,70,229,0.08);
+  background: rgba(15,23,42,0.08);
   color: var(--chain);
-  border: 1px solid rgba(79,70,229,0.2);
+  border: 1px solid rgba(15,23,42,0.2);
 }
 
 .nft-badge--transit {
@@ -374,9 +368,9 @@ img, svg { display: block; }
 }
 
 .nft-badge--verified {
-  background: rgba(0,200,150,0.10);
+  background: rgba(36,86,230,0.10);
   color: var(--accent-dim);
-  border: 1px solid rgba(0,200,150,0.22);
+  border: 1px solid rgba(36,86,230,0.22);
 }
 
 .nft-badge--consumed {
@@ -425,7 +419,7 @@ img, svg { display: block; }
 .pipeline-step:hover {
   border-color: var(--accent);
   box-shadow: var(--shadow-accent);
-  transform: translateY(-4px);
+  
 }
 
 .pipeline-step__num {
@@ -456,7 +450,7 @@ img, svg { display: block; }
 }
 
 .pipeline-step__desc {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.8rem;
   color: var(--text-muted);
   line-height: 1.6;
@@ -478,7 +472,7 @@ img, svg { display: block; }
 }
 
 .stat-label {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.78rem;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -509,7 +503,7 @@ img, svg { display: block; }
   display: flex;
   gap: var(--space-3);
   align-items: flex-start;
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.85rem;
   margin-bottom: var(--space-6);
 }
@@ -529,10 +523,10 @@ img, svg { display: block; }
 }
 
 .alert-banner--success {
-  background: rgba(0,200,150,0.06);
-  border: 1px solid rgba(0,200,150,0.2);
+  background: rgba(36,86,230,0.06);
+  border: 1px solid rgba(36,86,230,0.2);
   border-left: 3px solid var(--accent);
-  color: #065F46;
+  color: #1E3A8A;
 }
 
 /* ── Flex + Grid Utilities ──────────────────────────────────── */
@@ -577,8 +571,8 @@ img, svg { display: block; }
 }
 
 @keyframes validatorPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0,200,150,0.4); }
-  50%       { box-shadow: 0 0 0 6px rgba(0,200,150,0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(36,86,230,0.4); }
+  50%       { box-shadow: 0 0 0 6px rgba(36,86,230,0); }
 }
 
 @keyframes shimmer {

@@ -20,15 +20,14 @@ import { useLabVerification, LAB_STEPS, checkAgainstToken } from '../hooks/useLa
 import { parseHplcFile } from '../lib/hplcParser';
 import { parseGoldPackage } from '../lib/fingerprint';
 import { getSmartAccountAddress, pickTxWallet } from '../lib/pimlico';
-import DNABackground from '../components/DNABackground';
 import { useRole } from '../hooks/useRole';
 
 /* ── Status metadata ──────────────────────────────────────────── */
 const STATUS_META = [
-  { label: 'MINTED',     color: '#4F46E5', icon: <Package size={14} /> },
+  { label: 'MINTED',     color: '#0F172A', icon: <Package size={14} /> },
   { label: 'IN TRANSIT', color: '#F59E0B', icon: <Truck size={14} /> },
   { label: 'RECEIVED',   color: '#6B7280', icon: <CheckCircle2 size={14} /> },
-  { label: 'VERIFIED',   color: '#00C896', icon: <ShieldCheck size={14} /> },
+  { label: 'VERIFIED',   color: '#2456E6', icon: <ShieldCheck size={14} /> },
   { label: 'CONSUMED',   color: '#FF4D4D', icon: <Beaker size={14} /> },
 ];
 
@@ -40,13 +39,13 @@ const labelStyle = {
   color: '#6B7280', marginBottom: '0.4rem',
 };
 const hintStyle = {
-  fontFamily: "'Playfair Display', serif",
+  fontFamily: 'var(--font-body)',
   fontSize: '0.75rem', color: '#9CA3AF', marginTop: '0.3rem',
 };
 const inputStyle = {
   width: '100%', padding: '0.75rem 1rem',
-  background: '#f7fbf9', border: '1.5px solid #e0ede9',
-  borderRadius: '10px', color: '#0d1f1a',
+  background: '#F8FAFC', border: '1.5px solid #E2E8F0',
+  borderRadius: '10px', color: '#0F172A',
   fontFamily: "'Courier New', monospace",
   fontSize: '0.85rem', outline: 'none',
 };
@@ -59,11 +58,11 @@ function PeakChips({ label, values }) {
         {values.map((v, i) => (
           <div key={i} style={{
             textAlign: 'center', padding: '0.55rem 0.3rem', borderRadius: '8px',
-            background: 'rgba(0,200,150,0.06)', border: '1px solid rgba(0,200,150,0.18)',
+            background: 'rgba(36,86,230,0.06)', border: '1px solid rgba(36,86,230,0.18)',
             fontFamily: "'Courier New', monospace",
           }}>
             <div style={{ fontSize: '0.55rem', color: '#9CA3AF', marginBottom: '0.15rem' }}>P{i + 1}</div>
-            <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#065F46' }}>{v}</div>
+            <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#1E3A8A' }}>{v}</div>
           </div>
         ))}
       </div>
@@ -124,14 +123,14 @@ function LabTokensOverview({ wallets }) {
       marginBottom: '2rem',
       overflow: 'hidden',
       position: 'relative',
-      background: 'linear-gradient(135deg, #ffffff 0%, #f4fdf9 60%, #edf9f4 100%)',
-      border: '1px solid rgba(0,200,150,0.2)',
-      boxShadow: '0 16px 60px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,200,150,0.06), inset 0 1px 0 rgba(255,255,255,0.9)',
+      background: 'linear-gradient(135deg, #ffffff 0%, #F1F5FE 60%, #F1F5FE 100%)',
+      border: '1px solid rgba(36,86,230,0.2)',
+      boxShadow: '0 16px 60px rgba(0,0,0,0.08), 0 0 0 1px rgba(36,86,230,0.06), inset 0 1px 0 rgba(255,255,255,0.9)',
       animation: 'labSlideUp 0.55s cubic-bezier(0.23,1,0.32,1) both',
     }}>
       {/* Ambient orbs */}
-      <div style={{ position:'absolute', top:-60, right:-40, width:220, height:220, background:'radial-gradient(circle, rgba(0,200,150,0.07) 0%, transparent 70%)', pointerEvents:'none', borderRadius:'50%' }} />
-      <div style={{ position:'absolute', bottom:-50, left:-50, width:180, height:180, background:'radial-gradient(circle, rgba(79,70,229,0.05) 0%, transparent 70%)', pointerEvents:'none', borderRadius:'50%' }} />
+      <div style={{ position:'absolute', top:-60, right:-40, width:220, height:220, background:'radial-gradient(circle, rgba(36,86,230,0.07) 0%, transparent 70%)', pointerEvents:'none', borderRadius:'50%' }} />
+      <div style={{ position:'absolute', bottom:-50, left:-50, width:180, height:180, background:'radial-gradient(circle, rgba(15,23,42,0.05) 0%, transparent 70%)', pointerEvents:'none', borderRadius:'50%' }} />
       {/* Collapsible header */}
       <div
         onClick={() => setOpen(o => !o)}
@@ -139,7 +138,7 @@ function LabTokensOverview({ wallets }) {
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           padding: '1.4rem 1.75rem',
           cursor: 'pointer',
-          borderBottom: open ? '1px solid rgba(0,200,150,0.12)' : 'none',
+          borderBottom: open ? '1px solid rgba(36,86,230,0.12)' : 'none',
           userSelect: 'none',
           position: 'relative', zIndex: 1,
         }}
@@ -147,19 +146,19 @@ function LabTokensOverview({ wallets }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
           <div style={{
             width: 44, height: 44, borderRadius: '14px',
-            background: 'linear-gradient(135deg, rgba(0,200,150,0.18) 0%, rgba(0,200,150,0.06) 100%)',
-            border: '1px solid rgba(0,200,150,0.3)',
+            background: 'linear-gradient(135deg, rgba(36,86,230,0.18) 0%, rgba(36,86,230,0.06) 100%)',
+            border: '1px solid rgba(36,86,230,0.3)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            color: '#00C896',
-            boxShadow: '0 0 24px rgba(0,200,150,0.25)',
+            color: '#2456E6',
+            boxShadow: '0 0 24px rgba(36,86,230,0.25)',
             animation: 'labFloat 3.5s ease-in-out infinite',
           }}>
             <FlaskConical size={20} />
           </div>
           <div>
             <div style={{
-              fontFamily: "'Libre Baskerville', serif",
-              fontWeight: 700, fontSize: '1rem', color: '#0d1f1a',
+              fontFamily: 'var(--font-display)',
+              fontWeight: 700, fontSize: '1rem', color: '#0F172A',
               marginBottom: '0.15rem',
             }}>Reagent Status Overview</div>
             <div style={{
@@ -191,9 +190,9 @@ function LabTokensOverview({ wallets }) {
             onClick={e => { e.stopPropagation(); loadTokens(); }}
             disabled={loading}
             style={{
-              background: 'rgba(0,200,150,0.06)', border: '1px solid rgba(0,200,150,0.2)',
+              background: 'rgba(36,86,230,0.06)', border: '1px solid rgba(36,86,230,0.2)',
               borderRadius: '8px', cursor: loading ? 'not-allowed' : 'pointer',
-              color: '#00A87E', display: 'flex', padding: '6px',
+              color: '#1B44C0', display: 'flex', padding: '6px',
               transition: 'all 0.2s',
             }}
             title="Refresh"
@@ -211,16 +210,16 @@ function LabTokensOverview({ wallets }) {
           {loading && tokens.length === 0 ? (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '3rem 0', gap: '1rem' }}>
               <div style={{ position: 'relative', width: 56, height: 56 }}>
-                <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid rgba(0,200,150,0.25)', animation: 'labRipple 1.6s ease-out infinite' }} />
-                <div style={{ position: 'absolute', inset: 8, borderRadius: '50%', border: '2px solid rgba(0,200,150,0.5)', borderTopColor: 'transparent', animation: 'labSpin 0.9s linear infinite' }} />
-                <div style={{ position: 'absolute', inset: 16, borderRadius: '50%', background: 'rgba(0,200,150,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#00C896' }}>
+                <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid rgba(36,86,230,0.25)', animation: 'labRipple 1.6s ease-out infinite' }} />
+                <div style={{ position: 'absolute', inset: 8, borderRadius: '50%', border: '2px solid rgba(36,86,230,0.5)', borderTopColor: 'transparent', animation: 'labSpin 0.9s linear infinite' }} />
+                <div style={{ position: 'absolute', inset: 16, borderRadius: '50%', background: 'rgba(36,86,230,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#2456E6' }}>
                   <FlaskConical size={12} />
                 </div>
               </div>
               <div style={{ fontFamily: "'Courier New', monospace", fontSize: '0.72rem', color: '#9CA3AF', letterSpacing: '0.08em' }}>SCANNING POLYGON…</div>
             </div>
           ) : tokens.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '2.5rem', fontFamily: "'Playfair Display', serif", fontSize: '0.9rem', color: '#9CA3AF' }}>
+            <div style={{ textAlign: 'center', padding: '2.5rem', fontFamily: 'var(--font-body)', fontSize: '0.9rem', color: '#9CA3AF' }}>
               No reagent batches have reached the lab yet.
             </div>
           ) : (
@@ -263,7 +262,7 @@ function LabTokensOverview({ wallets }) {
 
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem' }}>
                         <div>
-                          <div style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, fontSize: '0.9rem', color: '#0d1f1a', marginBottom: '0.25rem' }}>{t.batchId}</div>
+                          <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.9rem', color: '#0F172A', marginBottom: '0.25rem' }}>{t.batchId}</div>
                           <div style={{ fontFamily: "'Courier New', monospace", fontSize: '0.6rem', color: '#6B7280' }}>
                             Token #{t.id} · {isExpired
                               ? <span style={{ color: '#FF4D4D', fontWeight: 700 }}>EXPIRED</span>
@@ -323,17 +322,17 @@ function PipelineIndicator({ currentStep }) {
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
               <div style={{
                 width: 48, height: 48, borderRadius: '50%',
-                background: done ? '#00C896' : active ? 'rgba(0,200,150,0.12)' : '#F3F2EF',
-                border: done ? 'none' : active ? '2px solid #00C896' : '2px solid #E5E3DF',
+                background: done ? '#2456E6' : active ? 'rgba(36,86,230,0.12)' : '#F1F3F6',
+                border: done ? 'none' : active ? '2px solid #2456E6' : '2px solid #E3E6EB',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: done ? '#fff' : active ? '#00A87E' : '#9CA3AF',
+                color: done ? '#fff' : active ? '#1B44C0' : '#9CA3AF',
                 transition: 'all 0.4s ease',
-                boxShadow: active ? '0 0 0 6px rgba(0,200,150,0.12)' : 'none',
+                boxShadow: active ? '0 0 0 6px rgba(36,86,230,0.12)' : 'none',
               }}>
                 {done ? <CheckCircle2 size={22} /> : active ? (
                   <div style={{
                     width: 20, height: 20,
-                    border: '2.5px solid #00C896',
+                    border: '2.5px solid #2456E6',
                     borderTop: '2.5px solid transparent',
                     borderRadius: '50%',
                     animation: 'spin 0.8s linear infinite',
@@ -346,7 +345,7 @@ function PipelineIndicator({ currentStep }) {
                 marginTop: '0.5rem', textAlign: 'center',
                 whiteSpace: 'nowrap', letterSpacing: '0.06em',
                 textTransform: 'uppercase',
-                color: done ? '#00A87E' : active ? '#0d1f1a' : '#9CA3AF',
+                color: done ? '#1B44C0' : active ? '#0F172A' : '#9CA3AF',
               }}>{s.label}</div>
             </div>
 
@@ -354,7 +353,7 @@ function PipelineIndicator({ currentStep }) {
             {i < PIPELINE.length - 1 && (
               <div style={{
                 flex: 1, height: 2,
-                background: done ? '#00C896' : '#E5E3DF',
+                background: done ? '#2456E6' : '#E3E6EB',
                 margin: '0 0.6rem', marginBottom: '1.3rem',
                 transition: 'background 0.5s ease',
                 borderRadius: 1,
@@ -392,7 +391,7 @@ function StatusTimeline({ currentStatus }) {
             }}>
               <div style={{
                 width: 8, height: 8, borderRadius: '50%',
-                background: done || active ? s.color : '#E5E3DF',
+                background: done || active ? s.color : '#E3E6EB',
                 transition: 'background 0.3s',
               }} />
               <span style={{
@@ -405,7 +404,7 @@ function StatusTimeline({ currentStatus }) {
             {i < STATUS_META.length - 1 && (
               <div style={{
                 flex: 1, height: 1.5,
-                background: done ? s.color : '#E5E3DF',
+                background: done ? s.color : '#E3E6EB',
                 margin: '0 0.3rem',
                 transition: 'background 0.4s',
               }} />
@@ -426,20 +425,20 @@ function AiResultCard({ result }) {
     <div style={{
       padding: '1.25rem',
       borderRadius: '12px',
-      background: ok ? 'rgba(0,200,150,0.05)' : 'rgba(255,77,77,0.05)',
-      border: `1px solid ${ok ? 'rgba(0,200,150,0.2)' : 'rgba(255,77,77,0.2)'}`,
-      borderLeft: `3px solid ${ok ? '#00C896' : '#FF4D4D'}`,
+      background: ok ? 'rgba(36,86,230,0.05)' : 'rgba(255,77,77,0.05)',
+      border: `1px solid ${ok ? 'rgba(36,86,230,0.2)' : 'rgba(255,77,77,0.2)'}`,
+      borderLeft: `3px solid ${ok ? '#2456E6' : '#FF4D4D'}`,
       marginBottom: '1.25rem',
     }}>
       <div style={{
         display: 'flex', alignItems: 'center', gap: '0.6rem',
         marginBottom: '0.65rem',
       }}>
-        {ok ? <CheckCircle2 size={18} color="#00C896" /> : <AlertTriangle size={18} color="#FF4D4D" />}
+        {ok ? <CheckCircle2 size={18} color="#2456E6" /> : <AlertTriangle size={18} color="#FF4D4D" />}
         <span style={{
-          fontFamily: "'Libre Baskerville', serif",
+          fontFamily: 'var(--font-display)',
           fontWeight: 700, fontSize: '0.95rem',
-          color: ok ? '#065F46' : '#991B1B',
+          color: ok ? '#1E3A8A' : '#991B1B',
         }}>
           {ok ? 'AI Pre-Screen: GENUINE ✓' : 'AI Pre-Screen: ANOMALY DETECTED ✗'}
         </span>
@@ -470,9 +469,9 @@ function AiResultCard({ result }) {
               letterSpacing: '0.1em', marginBottom: '0.2rem',
             }}>{m.label}</div>
             <div style={{
-              fontFamily: "'Libre Baskerville', serif",
+              fontFamily: 'var(--font-display)',
               fontSize: '0.9rem', fontWeight: 700,
-              color: '#0d1f1a',
+              color: '#0F172A',
             }}>{m.value}</div>
           </div>
         ))}
@@ -481,8 +480,8 @@ function AiResultCard({ result }) {
       {ok && (
         <div style={{
           marginTop: '0.75rem',
-          fontFamily: "'Playfair Display', serif",
-          fontSize: '0.82rem', color: '#065F46',
+          fontFamily: 'var(--font-body)',
+          fontSize: '0.82rem', color: '#1E3A8A',
         }}>
           Anomaly probability below threshold — proceeding to ZK proof generation.
         </div>
@@ -490,7 +489,7 @@ function AiResultCard({ result }) {
       {!ok && (
         <div style={{
           marginTop: '0.75rem',
-          fontFamily: "'Playfair Display', serif",
+          fontFamily: 'var(--font-body)',
           fontSize: '0.82rem', color: '#991B1B',
         }}>
           ZK proof generation halted. Reagent failed authenticity check.
@@ -508,7 +507,7 @@ function TokenInfoCard({ token }) {
   return (
     <div style={{
       background: '#fff', borderRadius: '16px',
-      border: '1px solid #e0ede9', padding: '1.5rem',
+      border: '1px solid #E2E8F0', padding: '1.5rem',
       boxShadow: '0 4px 24px rgba(0,0,0,0.07)',
       marginBottom: '1.25rem',
       borderLeft: `3px solid ${meta.color}`,
@@ -523,12 +522,12 @@ function TokenInfoCard({ token }) {
             fontFamily: "'Courier New', monospace",
             fontSize: '0.65rem', fontWeight: 700,
             letterSpacing: '0.12em', textTransform: 'uppercase',
-            color: '#00C896', marginBottom: '0.3rem',
+            color: '#2456E6', marginBottom: '0.3rem',
           }}>TOKEN #{token.id}</div>
           <div style={{
-            fontFamily: "'Libre Baskerville', serif",
+            fontFamily: 'var(--font-display)',
             fontSize: '1.4rem', fontWeight: 700,
-            color: '#0d1f1a',
+            color: '#0F172A',
           }}>{token.batchId}</div>
         </div>
         <span style={{
@@ -561,7 +560,7 @@ function TokenInfoCard({ token }) {
           }}>Current Owner</div>
           <div style={{
             fontFamily: "'Courier New', monospace",
-            fontSize: '0.78rem', color: '#4F46E5',
+            fontSize: '0.78rem', color: '#0F172A',
             wordBreak: 'break-all',
           }}>{token.owner}</div>
         </div>
@@ -574,22 +573,22 @@ function TokenInfoCard({ token }) {
           }}>Expiry</div>
           <div style={{
             fontFamily: "'Courier New', monospace",
-            fontSize: '0.78rem', color: '#0d1f1a',
+            fontSize: '0.78rem', color: '#0F172A',
           }}>{token.expiry}</div>
         </div>
       </div>
 
-      <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #e0ede9' }}>
+      <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #E2E8F0' }}>
         <div style={labelStyle}>Gold Standard Commitment · tolerance ±{token.tolerance}</div>
         <div style={{
           fontFamily: "'Courier New', monospace",
           fontSize: '0.72rem', color: '#6B7280',
-          background: '#F3F2EF', padding: '0.6rem 0.8rem',
-          borderRadius: '8px', border: '1px solid #E5E3DF',
+          background: '#F1F3F6', padding: '0.6rem 0.8rem',
+          borderRadius: '8px', border: '1px solid #E3E6EB',
           wordBreak: 'break-all', lineHeight: 1.5,
         }}>{token.commitment}</div>
         <div style={{ ...labelStyle, marginTop: '0.75rem' }}>Reagent</div>
-        <div style={{ fontFamily: "'Courier New', monospace", fontSize: '0.78rem', color: '#0d1f1a', wordBreak: 'break-all' }}>
+        <div style={{ fontFamily: "'Courier New', monospace", fontSize: '0.78rem', color: '#0F172A', wordBreak: 'break-all' }}>
           {token.reagentSmiles}
         </div>
       </div>
@@ -601,28 +600,28 @@ function TokenInfoCard({ token }) {
 function SuccessCard({ txReceipt, tokenId }) {
   return (
     <div style={{
-      background: 'rgba(0,200,150,0.04)',
-      border: '1px solid rgba(0,200,150,0.2)',
-      borderLeft: '3px solid #00C896',
+      background: 'rgba(36,86,230,0.04)',
+      border: '1px solid rgba(36,86,230,0.2)',
+      borderLeft: '3px solid #2456E6',
       borderRadius: '16px', padding: '2rem',
       textAlign: 'center',
     }}>
       <div style={{
         width: 64, height: 64, borderRadius: '50%',
-        background: '#00C896', display: 'flex',
+        background: '#2456E6', display: 'flex',
         alignItems: 'center', justifyContent: 'center',
         margin: '0 auto 1.25rem',
-        boxShadow: '0 0 0 8px rgba(0,200,150,0.15)',
+        boxShadow: '0 0 0 8px rgba(36,86,230,0.15)',
       }}>
         <ShieldCheck size={30} color="#fff" />
       </div>
       <div style={{
-        fontFamily: "'Libre Baskerville', serif",
+        fontFamily: 'var(--font-display)',
         fontSize: '1.5rem', fontWeight: 700,
-        color: '#065F46', marginBottom: '0.5rem',
+        color: '#1E3A8A', marginBottom: '0.5rem',
       }}>Verification Complete ✓</div>
       <div style={{
-        fontFamily: "'Playfair Display', serif",
+        fontFamily: 'var(--font-body)',
         fontSize: '0.95rem', color: '#6B7280',
         marginBottom: '1.5rem',
       }}>
@@ -632,11 +631,11 @@ function SuccessCard({ txReceipt, tokenId }) {
       <Link to={`/details?id=${tokenId}`} style={{
         display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
         padding: '0.7rem 1.5rem', borderRadius: '9999px',
-        background: '#00C896', color: '#fff',
-        fontFamily: "'Playfair Display', serif",
+        background: '#2456E6', color: '#fff',
+        fontFamily: 'var(--font-body)',
         fontWeight: 600, fontSize: '0.88rem',
         textDecoration: 'none',
-        boxShadow: '0 8px 24px rgba(0,200,150,0.2)',
+        boxShadow: '0 8px 24px rgba(36,86,230,0.2)',
         transition: 'all 0.2s ease',
       }}>
         View Token Details <ArrowRight size={15} />
@@ -764,7 +763,6 @@ export default function LabDashboard() {
   if (!authenticated) {
     return (
       <>
-        <DNABackground />
         <div style={{
           position: 'relative', zIndex: 1,
           minHeight: '80vh', display: 'flex', flexDirection: 'column',
@@ -773,21 +771,21 @@ export default function LabDashboard() {
         }}>
           <div style={{
             width: 90, height: 90, borderRadius: '50%',
-            background: 'rgba(0,200,150,0.08)',
+            background: 'rgba(36,86,230,0.08)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            margin: '0 auto 2rem', color: '#00C896',
-            boxShadow: '0 0 0 16px rgba(0,200,150,0.04)',
+            margin: '0 auto 2rem', color: '#2456E6',
+            boxShadow: '0 0 0 16px rgba(36,86,230,0.04)',
             animation: 'pulseDot 2.2s ease-in-out infinite',
           }}>
             <FlaskConical size={40} />
           </div>
           <h1 style={{
-            fontFamily: "'Libre Baskerville', serif",
+            fontFamily: 'var(--font-display)',
             fontSize: '2.6rem', fontWeight: 700,
-            color: '#0d1f1a', marginBottom: '0.75rem',
+            color: '#0F172A', marginBottom: '0.75rem',
           }}>Lab Verification Console</h1>
           <p style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: 'var(--font-body)',
             color: '#6B7280', fontSize: '1.05rem',
             maxWidth: 420, margin: '0 auto 2.5rem', lineHeight: 1.8,
           }}>
@@ -796,7 +794,7 @@ export default function LabDashboard() {
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
             padding: '1rem 1.75rem',
-            border: '1.5px dashed #c8ddd8', borderRadius: '16px',
+            border: '1.5px dashed #CBD5E1', borderRadius: '16px',
             color: '#6B7280',
             fontFamily: "'Courier New', monospace",
             fontSize: '0.82rem',
@@ -813,7 +811,6 @@ export default function LabDashboard() {
   if (authenticated && roleLoading) {
     return (
       <>
-        <DNABackground />
         <div style={{
           position: 'relative', zIndex: 1,
           minHeight: '80vh', display: 'flex',
@@ -832,7 +829,6 @@ export default function LabDashboard() {
   if (authenticated && role !== 'lab') {
     return (
       <>
-        <DNABackground />
         <div style={{
           position: 'relative', zIndex: 1,
           minHeight: '80vh', display: 'flex', flexDirection: 'column',
@@ -840,12 +836,12 @@ export default function LabDashboard() {
           textAlign: 'center', padding: '4rem 1.5rem',
         }}>
           <div style={{
-            fontFamily: "'Libre Baskerville', serif",
+            fontFamily: 'var(--font-display)',
             fontSize: '1.5rem', fontWeight: 700,
-            color: '#0d1f1a', marginBottom: '0.75rem',
+            color: '#0F172A', marginBottom: '0.75rem',
           }}>Access Restricted</div>
           <p style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: 'var(--font-body)',
             color: '#6B7280', fontSize: '0.95rem', maxWidth: 360,
           }}>
             This console is for registered lab accounts only. Your wallet is registered as: <strong>{role || 'unregistered'}</strong>
@@ -857,7 +853,6 @@ export default function LabDashboard() {
 
   return (
     <>
-      <DNABackground />
 
       <div style={{ position: 'relative', zIndex: 1 }}>
         <div style={{
@@ -876,23 +871,23 @@ export default function LabDashboard() {
                   fontFamily: "'Courier New', monospace",
                   fontSize: '0.68rem', fontWeight: 700,
                   letterSpacing: '0.22em', textTransform: 'uppercase',
-                  color: '#00C896', marginBottom: '0.6rem',
+                  color: '#2456E6', marginBottom: '0.6rem',
                   display: 'flex', alignItems: 'center', gap: '0.5rem',
                 }}>
-                  <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#00C896', display: 'inline-block', boxShadow: '0 0 8px #00C896', animation: 'labPulseDot 2s infinite' }} />
+                  <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#2456E6', display: 'inline-block', boxShadow: '0 0 8px #2456E6', animation: 'labPulseDot 2s infinite' }} />
                   LAB VERIFICATION CONSOLE
                 </div>
                 <h1 style={{
-                  fontFamily: "'Libre Baskerville', serif",
+                  fontFamily: 'var(--font-display)',
                   fontSize: 'clamp(2rem, 5vw, 3rem)',
                   fontWeight: 700, lineHeight: 1.1, marginBottom: '0.5rem',
-                  background: 'linear-gradient(135deg, #0d1f1a 0%, #00A87E 60%, #4F46E5 100%)',
+                  background: 'linear-gradient(135deg, #0F172A 0%, #1B44C0 60%, #0F172A 100%)',
                   WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
-                  filter: 'drop-shadow(0 0 20px rgba(0,200,150,0.2))',
+                  filter: 'drop-shadow(0 0 20px rgba(36,86,230,0.2))',
                 }}>Verification Console</h1>
                 <p style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: 'var(--font-body)',
                   fontSize: '1rem', color: '#6B7280', lineHeight: 1.7,
                 }}>
                   Authenticate reagent batches with AI pre-screening and zero-knowledge proof verification.
@@ -904,9 +899,9 @@ export default function LabDashboard() {
                   style={{
                     display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
                     padding: '0.6rem 1.25rem', borderRadius: '9999px',
-                    background: 'transparent', border: '1.5px solid #0d1f1a',
-                    color: '#0d1f1a',
-                    fontFamily: "'Playfair Display', serif",
+                    background: 'transparent', border: '1.5px solid #0F172A',
+                    color: '#0F172A',
+                    fontFamily: 'var(--font-body)',
                     fontWeight: 600, fontSize: '0.82rem',
                     cursor: 'pointer', transition: 'all 0.2s',
                   }}
@@ -949,11 +944,11 @@ export default function LabDashboard() {
           {/* ── Receiving address for manufacturers ── */}
           {labAddress && (
             <div style={{
-              background: '#fff', borderRadius: '12px', border: '1px solid #e0ede9',
+              background: '#fff', borderRadius: '12px', border: '1px solid #E2E8F0',
               padding: '0.9rem 1.25rem', marginBottom: '1.25rem',
             }}>
               <div style={labelStyle}>Your lab address — give this to manufacturers as the shipping address</div>
-              <div style={{ fontFamily: "'Courier New', monospace", fontSize: '0.82rem', color: '#4F46E5', wordBreak: 'break-all' }}>
+              <div style={{ fontFamily: "'Courier New', monospace", fontSize: '0.82rem', color: '#0F172A', wordBreak: 'break-all' }}>
                 {labAddress}
               </div>
             </div>
@@ -969,20 +964,20 @@ export default function LabDashboard() {
               padding: '1.1rem 1.25rem',
               background: tokenData.status === 4
                 ? 'rgba(255,77,77,0.05)'
-                : 'rgba(0,200,150,0.05)',
-              border: `1px solid ${tokenData.status === 4 ? 'rgba(255,77,77,0.2)' : 'rgba(0,200,150,0.2)'}`,
-              borderLeft: `3px solid ${tokenData.status === 4 ? '#FF4D4D' : '#00C896'}`,
+                : 'rgba(36,86,230,0.05)',
+              border: `1px solid ${tokenData.status === 4 ? 'rgba(255,77,77,0.2)' : 'rgba(36,86,230,0.2)'}`,
+              borderLeft: `3px solid ${tokenData.status === 4 ? '#FF4D4D' : '#2456E6'}`,
               borderRadius: '12px',
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: 'var(--font-body)',
               fontSize: '0.9rem',
-              color: tokenData.status === 4 ? '#991B1B' : '#065F46',
+              color: tokenData.status === 4 ? '#991B1B' : '#1E3A8A',
               marginBottom: '1.25rem',
             }}>
               {tokenData.status === 4
                 ? <Beaker size={16} style={{ flexShrink: 0, marginTop: 2 }} />
                 : <ShieldCheck size={16} style={{ flexShrink: 0, marginTop: 2 }} />}
               <div>
-                <div style={{ fontWeight: 700, marginBottom: '0.2rem', fontFamily: "'Libre Baskerville', serif" }}>
+                <div style={{ fontWeight: 700, marginBottom: '0.2rem', fontFamily: 'var(--font-display)' }}>
                   {tokenData.status === 4 ? 'Token Consumed' : 'Already Verified'}
                 </div>
                 {tokenData.status === 4
@@ -1004,7 +999,7 @@ export default function LabDashboard() {
           {step <= LAB_STEPS.FETCHING && !tokenData && (
             <div style={{
               background: '#fff', borderRadius: '16px',
-              border: '1px solid #e0ede9', padding: '2rem',
+              border: '1px solid #E2E8F0', padding: '2rem',
               boxShadow: '0 4px 24px rgba(0,0,0,0.07)',
               marginBottom: '1.25rem',
             }} className="animate-fade-up">
@@ -1014,17 +1009,17 @@ export default function LabDashboard() {
               }}>
                 <div style={{
                   width: 40, height: 40, borderRadius: '12px',
-                  background: 'rgba(0,200,150,0.08)',
+                  background: 'rgba(36,86,230,0.08)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: '#00A87E',
+                  color: '#1B44C0',
                 }}>
                   <Search size={20} />
                 </div>
                 <div>
                   <div style={{
-                    fontFamily: "'Libre Baskerville', serif",
+                    fontFamily: 'var(--font-display)',
                     fontWeight: 700, fontSize: '1.05rem',
-                    color: '#0d1f1a',
+                    color: '#0F172A',
                   }}>Lookup Batch</div>
                   <div style={{
                     fontFamily: "'Courier New', monospace",
@@ -1051,18 +1046,18 @@ export default function LabDashboard() {
                     placeholder="e.g. 0"
                     style={{
                       width: '100%', padding: '0.85rem 1rem',
-                      background: '#f7fbf9', border: '1.5px solid #e0ede9',
-                      borderRadius: '10px', color: '#0d1f1a',
+                      background: '#F8FAFC', border: '1.5px solid #E2E8F0',
+                      borderRadius: '10px', color: '#0F172A',
                       fontFamily: "'Courier New', monospace",
                       fontSize: '0.92rem', outline: 'none',
                       transition: 'border-color 0.2s, box-shadow 0.2s',
                     }}
                     onFocus={e => {
-                      e.target.style.borderColor = '#00C896';
-                      e.target.style.boxShadow = '0 0 0 3px rgba(0,200,150,0.12)';
+                      e.target.style.borderColor = '#2456E6';
+                      e.target.style.boxShadow = '0 0 0 3px rgba(36,86,230,0.12)';
                     }}
                     onBlur={e => {
-                      e.target.style.borderColor = '#e0ede9';
+                      e.target.style.borderColor = '#E2E8F0';
                       e.target.style.boxShadow = 'none';
                     }}
                   />
@@ -1074,14 +1069,14 @@ export default function LabDashboard() {
                   style={{
                     width: '100%', padding: '0.9rem',
                     borderRadius: '9999px',
-                    background: loading ? '#9CA3AF' : '#00C896',
+                    background: loading ? '#9CA3AF' : '#2456E6',
                     color: '#fff', border: 'none',
-                    fontFamily: "'Libre Baskerville', serif",
+                    fontFamily: 'var(--font-display)',
                     fontSize: '0.95rem', fontWeight: 700,
                     cursor: loading ? 'not-allowed' : 'pointer',
                     display: 'flex', alignItems: 'center',
                     justifyContent: 'center', gap: '0.5rem',
-                    boxShadow: loading ? 'none' : '0 8px 24px rgba(0,200,150,0.2)',
+                    boxShadow: loading ? 'none' : '0 8px 24px rgba(36,86,230,0.2)',
                     transition: 'all 0.2s ease',
                   }}
                 >
@@ -1110,7 +1105,7 @@ export default function LabDashboard() {
           {tokenData && tokenData.status < 3 && step >= LAB_STEPS.AI_CHECK && step < LAB_STEPS.ZK_PROVING && !aiResult && (
             <div style={{
               background: '#fff', borderRadius: '16px',
-              border: '1px solid #e0ede9', padding: '2rem',
+              border: '1px solid #E2E8F0', padding: '2rem',
               boxShadow: '0 4px 24px rgba(0,0,0,0.07)',
               marginBottom: '1.25rem',
             }} className="animate-fade-up">
@@ -1122,17 +1117,17 @@ export default function LabDashboard() {
               }}>
                 <div style={{
                   width: 40, height: 40, borderRadius: '12px',
-                  background: 'rgba(0,200,150,0.08)',
+                  background: 'rgba(36,86,230,0.08)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: '#00A87E',
+                  color: '#1B44C0',
                 }}>
                   <Fingerprint size={20} />
                 </div>
                 <div>
                   <div style={{
-                    fontFamily: "'Libre Baskerville', serif",
+                    fontFamily: 'var(--font-display)',
                     fontWeight: 700, fontSize: '1.05rem',
-                    color: '#0d1f1a',
+                    color: '#0F172A',
                   }}>Lab Scan Data</div>
                   <div style={{
                     fontFamily: "'Courier New', monospace",
@@ -1153,12 +1148,12 @@ export default function LabDashboard() {
                 }}
                 onClick={() => document.getElementById('lab-file-input').click()}
                 style={{
-                  border: `2px dashed ${labDragging ? '#00C896' : '#b8d8cf'}`,
+                  border: `2px dashed ${labDragging ? '#2456E6' : '#CBD5E1'}`,
                   borderRadius: '12px',
                   padding: '2.5rem',
                   textAlign: 'center',
                   cursor: 'pointer',
-                  background: labDragging ? 'rgba(0,200,150,0.06)' : '#f7fbf9',
+                  background: labDragging ? 'rgba(36,86,230,0.06)' : '#F8FAFC',
                   transition: 'all 0.2s ease',
                   marginBottom: '1.25rem',
                 }}
@@ -1175,16 +1170,16 @@ export default function LabDashboard() {
                   <>
                     <div style={{
                       width: 36, height: 36,
-                      border: '3px solid rgba(0,200,150,0.3)',
-                      borderTop: '3px solid #00C896',
+                      border: '3px solid rgba(36,86,230,0.3)',
+                      borderTop: '3px solid #2456E6',
                       borderRadius: '50%',
                       animation: 'spin 0.8s linear infinite',
                       margin: '0 auto 0.75rem',
                     }} />
                     <div style={{
-                      fontFamily: "'Libre Baskerville', serif",
+                      fontFamily: 'var(--font-display)',
                       fontWeight: 700, fontSize: '0.95rem',
-                      color: '#0d1f1a', marginBottom: '0.25rem',
+                      color: '#0F172A', marginBottom: '0.25rem',
                     }}>Extracting peaks…</div>
                     <div style={{
                       fontFamily: "'Courier New', monospace",
@@ -1193,11 +1188,11 @@ export default function LabDashboard() {
                   </>
                 ) : labFile && extractedPeaks ? (
                   <>
-                    <CheckCircle2 size={36} style={{ color: '#00C896', margin: '0 auto 0.75rem', display: 'block' }} />
+                    <CheckCircle2 size={36} style={{ color: '#2456E6', margin: '0 auto 0.75rem', display: 'block' }} />
                     <div style={{
-                      fontFamily: "'Libre Baskerville', serif",
+                      fontFamily: 'var(--font-display)',
                       fontWeight: 700, fontSize: '1rem',
-                      color: '#0d1f1a', marginBottom: '0.3rem',
+                      color: '#0F172A', marginBottom: '0.3rem',
                     }}>{labFile.name}</div>
                     <div style={{
                       fontFamily: "'Courier New', monospace",
@@ -1208,19 +1203,19 @@ export default function LabDashboard() {
                   <>
                     <div style={{
                       width: 52, height: 52, borderRadius: '50%',
-                      background: 'rgba(0,200,150,0.08)',
+                      background: 'rgba(36,86,230,0.08)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      margin: '0 auto 1rem', color: '#00C896',
+                      margin: '0 auto 1rem', color: '#2456E6',
                     }}>
                       <Upload size={24} />
                     </div>
                     <div style={{
-                      fontFamily: "'Libre Baskerville', serif",
+                      fontFamily: 'var(--font-display)',
                       fontWeight: 700, fontSize: '1rem',
-                      color: '#0d1f1a', marginBottom: '0.4rem',
+                      color: '#0F172A', marginBottom: '0.4rem',
                     }}>Drop HPLC chromatogram here</div>
                     <div style={{
-                      fontFamily: "'Playfair Display', serif",
+                      fontFamily: 'var(--font-body)',
                       fontSize: '0.85rem', color: '#6B7280',
                     }}>or click to browse · CSV only</div>
                   </>
@@ -1262,7 +1257,7 @@ export default function LabDashboard() {
                       style={{ fontFamily: "'Courier New', monospace", fontSize: '0.8rem' }}
                     />
                     {goldFileName && !goldError && goldPackage && (
-                      <div style={{ ...hintStyle, color: '#065F46' }}>
+                      <div style={{ ...hintStyle, color: '#1E3A8A' }}>
                         {goldFileName} · batch {goldPackage.batchId} · commitment checked
                       </div>
                     )}
@@ -1279,19 +1274,19 @@ export default function LabDashboard() {
                         {comparison.perPeak.map(p => (
                           <div key={p.index} style={{
                             textAlign: 'center', padding: '0.45rem 0.3rem', borderRadius: '8px',
-                            background: p.ok ? 'rgba(0,200,150,0.06)' : 'rgba(255,77,77,0.06)',
-                            border: `1px solid ${p.ok ? 'rgba(0,200,150,0.18)' : 'rgba(255,77,77,0.3)'}`,
+                            background: p.ok ? 'rgba(36,86,230,0.06)' : 'rgba(255,77,77,0.06)',
+                            border: `1px solid ${p.ok ? 'rgba(36,86,230,0.18)' : 'rgba(255,77,77,0.3)'}`,
                             fontFamily: "'Courier New', monospace",
                           }}>
                             <div style={{ fontSize: '0.55rem', color: '#9CA3AF' }}>P{p.index + 1}</div>
-                            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: p.ok ? '#065F46' : '#991B1B' }}>
+                            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: p.ok ? '#1E3A8A' : '#991B1B' }}>
                               {p.lab}/{p.gold}
                             </div>
-                            <div style={{ fontSize: '0.6rem', color: p.ok ? '#065F46' : '#991B1B' }}>Δ{p.delta}</div>
+                            <div style={{ fontSize: '0.6rem', color: p.ok ? '#1E3A8A' : '#991B1B' }}>Δ{p.delta}</div>
                           </div>
                         ))}
                       </div>
-                      <div style={{ ...hintStyle, color: comparison.passed ? '#065F46' : '#991B1B' }}>
+                      <div style={{ ...hintStyle, color: comparison.passed ? '#1E3A8A' : '#991B1B' }}>
                         {comparison.passed
                           ? 'All peaks within tolerance. A ZK proof can be generated.'
                           : 'Some peaks are outside tolerance. This batch cannot be verified.'}
@@ -1303,7 +1298,7 @@ export default function LabDashboard() {
                   <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '0.75rem', marginBottom: '1.25rem' }}>
                     <div>
                       <div style={labelStyle}>Reagent SMILES (recorded at mint)</div>
-                      <div style={{ ...inputStyle, background: '#F3F2EF', wordBreak: 'break-all' }}>{tokenData.reagentSmiles}</div>
+                      <div style={{ ...inputStyle, background: '#F1F3F6', wordBreak: 'break-all' }}>{tokenData.reagentSmiles}</div>
                     </div>
                     <div>
                       <label htmlFor="lab-rt" style={labelStyle}>Observed RT (s)</label>
@@ -1326,14 +1321,14 @@ export default function LabDashboard() {
                     style={{
                       width: '100%', padding: '0.9rem',
                       borderRadius: '9999px',
-                      background: (loading || !comparison?.passed) ? '#9CA3AF' : '#00C896',
+                      background: (loading || !comparison?.passed) ? '#9CA3AF' : '#2456E6',
                       color: '#fff', border: 'none',
-                      fontFamily: "'Libre Baskerville', serif",
+                      fontFamily: 'var(--font-display)',
                       fontSize: '0.95rem', fontWeight: 700,
                       cursor: (loading || !comparison?.passed) ? 'not-allowed' : 'pointer',
                       display: 'flex', alignItems: 'center',
                       justifyContent: 'center', gap: '0.5rem',
-                      boxShadow: (loading || !comparison?.passed) ? 'none' : '0 8px 24px rgba(0,200,150,0.2)',
+                      boxShadow: (loading || !comparison?.passed) ? 'none' : '0 8px 24px rgba(36,86,230,0.2)',
                       transition: 'all 0.2s ease',
                     }}
                   >
@@ -1360,7 +1355,7 @@ export default function LabDashboard() {
               {/* Prompt to upload if no file yet */}
               {!extractedPeaks && !extracting && (
                 <p style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: 'var(--font-body)',
                   fontSize: '0.82rem', color: '#9CA3AF',
                   textAlign: 'center', marginTop: '0.5rem',
                 }}>Upload the lab chromatogram CSV above · it is read in your browser, not uploaded</p>
@@ -1372,7 +1367,7 @@ export default function LabDashboard() {
           {tokenData && tokenData.status < 3 && aiResult?.genuine && step >= LAB_STEPS.ZK_PROVING && step < LAB_STEPS.DONE && (
             <div style={{
               background: '#fff', borderRadius: '16px',
-              border: '1px solid #e0ede9', padding: '2rem',
+              border: '1px solid #E2E8F0', padding: '2rem',
               boxShadow: '0 4px 24px rgba(0,0,0,0.07)',
               marginBottom: '1.25rem',
             }} className="animate-fade-up">
@@ -1382,17 +1377,17 @@ export default function LabDashboard() {
               }}>
                 <div style={{
                   width: 40, height: 40, borderRadius: '12px',
-                  background: 'rgba(0,200,150,0.08)',
+                  background: 'rgba(36,86,230,0.08)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: '#00A87E',
+                  color: '#1B44C0',
                 }}>
                   <ShieldCheck size={20} />
                 </div>
                 <div>
                   <div style={{
-                    fontFamily: "'Libre Baskerville', serif",
+                    fontFamily: 'var(--font-display)',
                     fontWeight: 700, fontSize: '1.05rem',
-                    color: '#0d1f1a',
+                    color: '#0F172A',
                   }}>Zero-Knowledge Verification</div>
                   <div style={{
                     fontFamily: "'Courier New', monospace",
@@ -1413,19 +1408,19 @@ export default function LabDashboard() {
                   <div key={s.label} style={{
                     display: 'flex', alignItems: 'center', gap: '0.75rem',
                     padding: '0.8rem 1rem', borderRadius: '10px',
-                    background: s.active ? 'rgba(0,200,150,0.05)' : 'transparent',
-                    border: s.active ? '1px solid rgba(0,200,150,0.15)' : '1px solid #e0ede9',
+                    background: s.active ? 'rgba(36,86,230,0.05)' : 'transparent',
+                    border: s.active ? '1px solid rgba(36,86,230,0.15)' : '1px solid #E2E8F0',
                     opacity: s.done || s.active ? 1 : 0.4,
                     transition: 'all 0.3s',
                   }}>
                     <div style={{
-                      color: s.done ? '#00C896' : s.active ? '#00A87E' : '#9CA3AF',
+                      color: s.done ? '#2456E6' : s.active ? '#1B44C0' : '#9CA3AF',
                       flexShrink: 0,
                     }}>
                       {s.done ? <CheckCircle2 size={18} /> : s.active ? (
                         <div style={{
                           width: 18, height: 18,
-                          border: '2.5px solid #00C896',
+                          border: '2.5px solid #2456E6',
                           borderTop: '2.5px solid transparent',
                           borderRadius: '50%',
                           animation: 'spin 0.8s linear infinite',
@@ -1435,7 +1430,7 @@ export default function LabDashboard() {
                     <div style={{
                       fontFamily: "'Courier New', monospace",
                       fontWeight: 600, fontSize: '0.85rem',
-                      color: '#0d1f1a',
+                      color: '#0F172A',
                     }}>{s.label}</div>
                   </div>
                 ))}
@@ -1448,14 +1443,14 @@ export default function LabDashboard() {
                   style={{
                     width: '100%', padding: '0.9rem',
                     borderRadius: '9999px',
-                    background: '#00C896', color: '#fff',
+                    background: '#2456E6', color: '#fff',
                     border: 'none',
-                    fontFamily: "'Libre Baskerville', serif",
+                    fontFamily: 'var(--font-display)',
                     fontSize: '0.95rem', fontWeight: 700,
                     cursor: 'pointer',
                     display: 'flex', alignItems: 'center',
                     justifyContent: 'center', gap: '0.5rem',
-                    boxShadow: '0 8px 24px rgba(0,200,150,0.2)',
+                    boxShadow: '0 8px 24px rgba(36,86,230,0.2)',
                     transition: 'all 0.2s ease',
                   }}
                 >
@@ -1501,8 +1496,8 @@ export default function LabDashboard() {
           100% { transform: scale(2.2);  opacity: 0; }
         }
         @keyframes labPulseDot {
-          0%, 100% { box-shadow: 0 0 6px #00C896; opacity: 1; }
-          50%       { box-shadow: 0 0 16px #00C896, 0 0 32px rgba(0,200,150,0.4); opacity: 0.7; }
+          0%, 100% { box-shadow: 0 0 6px #2456E6; opacity: 1; }
+          50%       { box-shadow: 0 0 16px #2456E6, 0 0 32px rgba(36,86,230,0.4); opacity: 0.7; }
         }
         @keyframes labScanLine {
           0%   { top: 0%;   opacity: 0; }

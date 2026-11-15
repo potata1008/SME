@@ -10,7 +10,6 @@ import {
   Factory, FlaskConical, ArrowRight, ArrowLeft,
   ShieldCheck, Package, Beaker, Cpu,
 } from 'lucide-react';
-import DNABackground from '../components/DNABackground';
 
 const ROLES = [
   {
@@ -18,8 +17,8 @@ const ROLES = [
     title: 'Manufacturer',
     subtitle: 'Produce & mint reagent batches',
     icon: Factory,
-    color: '#4F46E5',
-    gradient: 'linear-gradient(135deg, #4F46E5 0%, #6366F1 100%)',
+    color: '#0F172A',
+    gradient: 'linear-gradient(135deg, #0F172A 0%, #334155 100%)',
     features: [
       { icon: <Package size={14} />, text: 'Mint reagent batch NFTs' },
       { icon: <Cpu size={14} />, text: 'Generate ZK commitments' },
@@ -32,8 +31,8 @@ const ROLES = [
     title: 'Laboratory',
     subtitle: 'Verify & authenticate reagents',
     icon: FlaskConical,
-    color: '#00C896',
-    gradient: 'linear-gradient(135deg, #00C896 0%, #00E5A0 100%)',
+    color: '#2456E6',
+    gradient: 'linear-gradient(135deg, #2456E6 0%, #4F7BF0 100%)',
     features: [
       { icon: <Beaker size={14} />, text: 'AI anomaly pre-screening' },
       { icon: <ShieldCheck size={14} />, text: 'Groth16 proof verification' },
@@ -71,7 +70,6 @@ export default function RoleSelection({
 
   return (
     <>
-      <DNABackground />
 
       <div style={{
         position: 'relative', zIndex: 1,
@@ -87,25 +85,25 @@ export default function RoleSelection({
         }} className="animate-fade-up">
           <div style={{
             width: 70, height: 70, borderRadius: '50%',
-            background: 'rgba(0,200,150,0.08)',
+            background: 'rgba(36,86,230,0.08)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             margin: '0 auto 1.5rem',
-            boxShadow: '0 0 0 12px rgba(0,200,150,0.04)',
+            boxShadow: '0 0 0 12px rgba(36,86,230,0.04)',
           }}>
-            <ShieldCheck size={32} color="#00C896" />
+            <ShieldCheck size={32} color="#2456E6" />
           </div>
 
           <h1 style={{
-            fontFamily: "'Libre Baskerville', serif",
+            fontFamily: 'var(--font-display)',
             fontSize: 'clamp(2rem, 5vw, 2.8rem)',
-            fontWeight: 700, color: '#0d1f1a',
+            fontWeight: 700, color: '#0F172A',
             lineHeight: 1.15, marginBottom: '0.75rem',
           }}>
-            {onCancel ? 'Change your role' : 'Welcome to BioToken'}
+            {onCancel ? 'Change your role' : 'Welcome to TraceRx'}
           </h1>
 
           <p style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: 'var(--font-body)',
             fontSize: '1.05rem', color: '#6B7280',
             lineHeight: 1.8,
           }}>
@@ -145,7 +143,7 @@ export default function RoleSelection({
                   borderRadius: '20px',
                   border: isHovered || isSelected
                     ? `2px solid ${role.color}`
-                    : '2px solid #e0ede9',
+                    : '2px solid #E2E8F0',
                   padding: 0,
                   cursor: isRegistering ? 'not-allowed' : 'pointer',
                   textAlign: 'left',
@@ -188,13 +186,13 @@ export default function RoleSelection({
                   </div>
 
                   <div style={{
-                    fontFamily: "'Libre Baskerville', serif",
+                    fontFamily: 'var(--font-display)',
                     fontSize: '1.35rem', fontWeight: 700,
                     color: '#fff', marginBottom: '0.25rem',
                   }}>{role.title}</div>
 
                   <div style={{
-                    fontFamily: "'Playfair Display', serif",
+                    fontFamily: 'var(--font-body)',
                     fontSize: '0.85rem', color: 'rgba(255,255,255,0.85)',
                   }}>{role.subtitle}</div>
 
@@ -233,9 +231,9 @@ export default function RoleSelection({
                     gap: '0.5rem',
                     padding: '0.75rem',
                     borderRadius: '12px',
-                    background: isHovered || isSelected ? role.gradient : '#f7fbf9',
+                    background: isHovered || isSelected ? role.gradient : '#F8FAFC',
                     color: isHovered || isSelected ? '#fff' : role.color,
-                    fontFamily: "'Libre Baskerville', serif",
+                    fontFamily: 'var(--font-display)',
                     fontSize: '0.88rem', fontWeight: 700,
                     transition: 'all 0.3s ease',
                     border: `1px solid ${isHovered || isSelected ? 'transparent' : `${role.color}30`}`,
@@ -302,10 +300,10 @@ export default function RoleSelection({
         }}>
           You can switch roles later from the navigation bar.
           Lab users receive <span style={{
-            background: 'rgba(0,200,150,0.1)',
-            border: '1px solid rgba(0,200,150,0.2)',
+            background: 'rgba(36,86,230,0.1)',
+            border: '1px solid rgba(36,86,230,0.2)',
             padding: '0.05rem 0.4rem', borderRadius: '4px',
-            color: '#00A87E',
+            color: '#1B44C0',
           }}>LAB_ROLE</span> on the Polygon smart contract.
         </div>
       </div>

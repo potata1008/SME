@@ -1,5 +1,5 @@
 {
-  "name": "biotoken",
+  "name": "tracerx",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HarshP295/BioToken.git"
+    "url": "git+https://github.com/potata1008/SME.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/HarshP295/BioToken/issues"
+    "url": "https://github.com/potata1008/SME/issues"
   },
-  "homepage": "https://github.com/HarshP295/BioToken#readme",
+  "homepage": "https://github.com/potata1008/SME#readme",
   "description": "",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",

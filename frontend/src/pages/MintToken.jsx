@@ -12,7 +12,6 @@ import {
 import { useGaslessContract } from '../hooks/useGaslessContract';
 import { getBaselinePeers, getPeerMeans } from '../lib/consensusValidator';
 import { DEFAULT_TOLERANCE } from '../lib/fingerprint';
-import DNABackground from '../components/DNABackground';
 
 /* ── card wrapper ─────────────────────────────────────────────── */
 function SectionCard({ children, style = {}, animDelay = 0 }) {
@@ -23,7 +22,7 @@ function SectionCard({ children, style = {}, animDelay = 0 }) {
         '--anim-delay': `${animDelay}s`,
         background: '#ffffff',
         borderRadius: '16px',
-        border: '1px solid #e0ede9',
+        border: '1px solid #E2E8F0',
         boxShadow: '0 4px 24px rgba(0,0,0,0.07)',
         padding: '2rem',
         marginBottom: '1.5rem',
@@ -46,16 +45,16 @@ function CardHeading({ children, withDot = false }) {
       {withDot && (
         <span style={{
           width: 10, height: 10, borderRadius: '50%',
-          background: '#00C896',
-          boxShadow: '0 0 0 3px rgba(0,200,150,0.2)',
+          background: '#2456E6',
+          boxShadow: '0 0 0 3px rgba(36,86,230,0.2)',
           flexShrink: 0,
           animation: 'validatorPulse 2s ease-in-out infinite',
         }} />
       )}
       <h2 style={{
-        fontFamily: "'Libre Baskerville', serif",
+        fontFamily: 'var(--font-display)',
         fontSize: '1.1rem', fontWeight: 700,
-        color: '#0d1f1a',
+        color: '#0F172A',
       }}>{children}</h2>
     </div>
   );
@@ -76,20 +75,20 @@ function ValidatorCard({ animDelay, consensusResult }) {
           <div key={i} style={{
             display: 'flex', alignItems: 'center', gap: '0.75rem',
             padding: '0.6rem 0.85rem',
-            background: 'rgba(0,200,150,0.04)',
+            background: 'rgba(36,86,230,0.04)',
             borderRadius: '10px',
-            border: '1px solid rgba(0,200,150,0.12)',
+            border: '1px solid rgba(36,86,230,0.12)',
           }}>
             <span style={{
               width: 8, height: 8, borderRadius: '50%',
-              background: '#00C896', flexShrink: 0,
+              background: '#2456E6', flexShrink: 0,
               animation: 'validatorPulse 2s ease-in-out infinite',
             }} />
-            <CheckCircle2 size={14} color="#00C896" />
+            <CheckCircle2 size={14} color="#2456E6" />
             <div style={{ flex: 1 }}>
               <span style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: '0.85rem', fontWeight: 600, color: '#0d1f1a',
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.85rem', fontWeight: 600, color: '#0F172A',
               }}>{p.supplier}</span>
               <div style={{
                 fontFamily: "'Courier New', monospace",
@@ -106,9 +105,9 @@ function ValidatorCard({ animDelay, consensusResult }) {
       {/* Peer mean */}
       <div style={{
         padding: '0.6rem 0.85rem',
-        background: '#f7fbf9',
+        background: '#F8FAFC',
         borderRadius: '8px',
-        border: '1px solid #e0ede9',
+        border: '1px solid #E2E8F0',
         marginBottom: '0.75rem',
       }}>
         <div style={{
@@ -119,7 +118,7 @@ function ValidatorCard({ animDelay, consensusResult }) {
         }}>PEER MEAN (±50 TOLERANCE)</div>
         <div style={{
           fontFamily: "'Courier New', monospace",
-          fontSize: '0.72rem', color: '#0d1f1a',
+          fontSize: '0.72rem', color: '#0F172A',
         }}>[{means.join(', ')}]</div>
       </div>
 
@@ -128,14 +127,14 @@ function ValidatorCard({ animDelay, consensusResult }) {
         <div style={{
           padding: '0.6rem 0.85rem',
           borderRadius: '8px',
-          background: consensusResult.passed ? 'rgba(0,200,150,0.05)' : 'rgba(255,77,77,0.05)',
-          border: `1px solid ${consensusResult.passed ? 'rgba(0,200,150,0.2)' : 'rgba(255,77,77,0.2)'}`,
+          background: consensusResult.passed ? 'rgba(36,86,230,0.05)' : 'rgba(255,77,77,0.05)',
+          border: `1px solid ${consensusResult.passed ? 'rgba(36,86,230,0.2)' : 'rgba(255,77,77,0.2)'}`,
           marginBottom: '0.5rem',
         }}>
           <div style={{
             fontFamily: "'Courier New', monospace",
             fontSize: '0.6rem', fontWeight: 700,
-            color: consensusResult.passed ? '#065F46' : '#991B1B',
+            color: consensusResult.passed ? '#1E3A8A' : '#991B1B',
             textTransform: 'uppercase',
             letterSpacing: '0.1em', marginBottom: '0.4rem',
           }}>
@@ -150,8 +149,8 @@ function ValidatorCard({ animDelay, consensusResult }) {
                 textAlign: 'center',
                 padding: '0.3rem 0.15rem',
                 borderRadius: '6px',
-                background: p.ok ? 'rgba(0,200,150,0.08)' : 'rgba(255,77,77,0.1)',
-                border: `1px solid ${p.ok ? 'rgba(0,200,150,0.2)' : 'rgba(255,77,77,0.25)'}`,
+                background: p.ok ? 'rgba(36,86,230,0.08)' : 'rgba(255,77,77,0.1)',
+                border: `1px solid ${p.ok ? 'rgba(36,86,230,0.2)' : 'rgba(255,77,77,0.25)'}`,
               }}>
                 <div style={{
                   fontFamily: "'Courier New', monospace",
@@ -160,7 +159,7 @@ function ValidatorCard({ animDelay, consensusResult }) {
                 <div style={{
                   fontFamily: "'Courier New', monospace",
                   fontSize: '0.68rem', fontWeight: 700,
-                  color: p.ok ? '#065F46' : '#991B1B',
+                  color: p.ok ? '#1E3A8A' : '#991B1B',
                 }}>Δ{p.delta}</div>
               </div>
             ))}
@@ -171,7 +170,7 @@ function ValidatorCard({ animDelay, consensusResult }) {
       <div style={{
         marginTop: '0.5rem',
         paddingTop: '0.75rem',
-        borderTop: '1px solid #e0ede9',
+        borderTop: '1px solid #E2E8F0',
         fontFamily: "'Courier New', monospace",
         fontSize: '0.72rem',
         color: '#6B7280',
@@ -182,8 +181,8 @@ function ValidatorCard({ animDelay, consensusResult }) {
 
       <style>{`
         @keyframes validatorPulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(0,200,150,0.4); }
-          50%       { box-shadow: 0 0 0 6px rgba(0,200,150,0); }
+          0%, 100% { box-shadow: 0 0 0 0 rgba(36,86,230,0.4); }
+          50%       { box-shadow: 0 0 0 6px rgba(36,86,230,0); }
         }
       `}</style>
     </SectionCard>
@@ -207,12 +206,12 @@ function UploadCard({ file, onFile, animDelay }) {
         }}
         onClick={() => document.getElementById('fp-file-input').click()}
         style={{
-          border: `2px dashed ${dragging ? '#00C896' : '#b8d8cf'}`,
+          border: `2px dashed ${dragging ? '#2456E6' : '#CBD5E1'}`,
           borderRadius: '12px',
           padding: '2.5rem',
           textAlign: 'center',
           cursor: 'pointer',
-          background: dragging ? 'rgba(0,200,150,0.06)' : '#f7fbf9',
+          background: dragging ? 'rgba(36,86,230,0.06)' : '#F8FAFC',
           transition: 'all 0.2s ease',
         }}
       >
@@ -225,11 +224,11 @@ function UploadCard({ file, onFile, animDelay }) {
         />
         {file ? (
           <>
-            <CheckCircle2 size={36} style={{ color: '#00C896', margin: '0 auto 0.75rem' }} />
+            <CheckCircle2 size={36} style={{ color: '#2456E6', margin: '0 auto 0.75rem' }} />
             <div style={{
-              fontFamily: "'Libre Baskerville', serif",
+              fontFamily: 'var(--font-display)',
               fontWeight: 700, fontSize: '1rem',
-              color: '#0d1f1a', marginBottom: '0.3rem',
+              color: '#0F172A', marginBottom: '0.3rem',
             }}>{file.name}</div>
             <div style={{
               fontFamily: "'Courier New', monospace",
@@ -240,20 +239,20 @@ function UploadCard({ file, onFile, animDelay }) {
           <>
             <div style={{
               width: 52, height: 52, borderRadius: '50%',
-              background: 'rgba(0,200,150,0.08)',
+              background: 'rgba(36,86,230,0.08)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               margin: '0 auto 1rem',
-              color: '#00C896',
+              color: '#2456E6',
             }}>
               <Upload size={24} />
             </div>
             <div style={{
-              fontFamily: "'Libre Baskerville', serif",
+              fontFamily: 'var(--font-display)',
               fontWeight: 700, fontSize: '1rem',
-              color: '#0d1f1a', marginBottom: '0.4rem',
+              color: '#0F172A', marginBottom: '0.4rem',
             }}>Drop the Gold Standard HPLC file here</div>
             <div style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: 'var(--font-body)',
               fontSize: '0.85rem', color: '#6B7280',
             }}>
               or click to browse · CSV, JSON, TXT
@@ -263,7 +262,7 @@ function UploadCard({ file, onFile, animDelay }) {
       </div>
       <p style={{
         marginTop: '0.75rem',
-        fontFamily: "'Playfair Display', serif",
+        fontFamily: 'var(--font-body)',
         fontSize: '0.8rem', color: '#9CA3AF',
         textAlign: 'center',
       }}>
@@ -287,7 +286,7 @@ function NFTPreviewCard({ batchId, expiryDays, tolerance, animDelay }) {
   ];
 
   return (
-    <SectionCard animDelay={animDelay} style={{ borderTop: '3px solid #00C896' }}>
+    <SectionCard animDelay={animDelay} style={{ borderTop: '3px solid #2456E6' }}>
       <CardHeading>NFT Preview</CardHeading>
       <div style={{
         display: 'grid', gridTemplateColumns: '1fr 1fr',
@@ -296,14 +295,14 @@ function NFTPreviewCard({ batchId, expiryDays, tolerance, animDelay }) {
         {fields.map(f => (
           <div key={f.label} style={{
             padding: '1rem',
-            background: '#f7fbf9',
+            background: '#F8FAFC',
             borderRadius: '10px',
-            border: '1px solid #e0ede9',
+            border: '1px solid #E2E8F0',
           }}>
             <div style={{
               display: 'flex', alignItems: 'center', gap: '0.35rem',
               fontFamily: "'Courier New', monospace",
-              fontSize: '0.65rem', color: '#00A87E',
+              fontSize: '0.65rem', color: '#1B44C0',
               fontWeight: 700, letterSpacing: '0.12em',
               textTransform: 'uppercase',
               marginBottom: '0.4rem',
@@ -311,9 +310,9 @@ function NFTPreviewCard({ batchId, expiryDays, tolerance, animDelay }) {
               {f.icon}{f.label}
             </div>
             <div style={{
-              fontFamily: "'Libre Baskerville', serif",
+              fontFamily: 'var(--font-display)',
               fontSize: '0.9rem', fontWeight: 700,
-              color: '#0d1f1a',
+              color: '#0F172A',
               wordBreak: 'break-all',
             }}>{f.value}</div>
           </div>
@@ -341,27 +340,27 @@ function Field({ label, hint, ...inputProps }) {
         style={{
           width: '100%',
           padding: '0.85rem 1rem',
-          background: '#f7fbf9',
-          border: '1.5px solid #e0ede9',
+          background: '#F8FAFC',
+          border: '1.5px solid #E2E8F0',
           borderRadius: '10px',
-          color: '#0d1f1a',
+          color: '#0F172A',
           fontFamily: "'Courier New', monospace",
           fontSize: '0.92rem',
           outline: 'none',
           transition: 'border-color 0.2s, box-shadow 0.2s',
         }}
         onFocus={e => {
-          e.target.style.borderColor = '#00C896';
-          e.target.style.boxShadow   = '0 0 0 3px rgba(0,200,150,0.12)';
+          e.target.style.borderColor = '#2456E6';
+          e.target.style.boxShadow   = '0 0 0 3px rgba(36,86,230,0.12)';
         }}
         onBlur={e => {
-          e.target.style.borderColor = '#e0ede9';
+          e.target.style.borderColor = '#E2E8F0';
           e.target.style.boxShadow   = 'none';
         }}
       />
       {hint && (
         <p style={{
-          fontFamily: "'Playfair Display', serif",
+          fontFamily: 'var(--font-body)',
           fontSize: '0.78rem', color: '#9CA3AF',
           marginTop: '0.35rem',
         }}>{hint}</p>
@@ -409,9 +408,9 @@ function downloadJson(filename, data) {
 function MintedCard({ minted, onDone }) {
   const filename = `${minted.goldPackage.batchId}_token-${minted.tokenId ?? 'unknown'}_gold-standard.json`;
   return (
-    <SectionCard style={{ borderTop: '3px solid #00C896' }}>
+    <SectionCard style={{ borderTop: '3px solid #2456E6' }}>
       <CardHeading>Batch minted · Token #{minted.tokenId?.toString() ?? '?'}</CardHeading>
-      <p style={{ fontFamily: "'Playfair Display', serif", color: '#374151', lineHeight: 1.7, marginBottom: '1rem' }}>
+      <p style={{ fontFamily: 'var(--font-body)', color: '#374151', lineHeight: 1.7, marginBottom: '1rem' }}>
         Only a commitment to the fingerprint is on-chain. Send the Gold Standard
         package below to the receiving lab with the shipment: they upload it on
         the Lab Dashboard to prove their HPLC scan matches. Keep it private;
@@ -470,7 +469,6 @@ export default function MintToken({ contract }) {
 
   return (
     <>
-      <DNABackground />
 
       <div style={{ position: 'relative', zIndex: 1 }}>
         <div style={{
@@ -485,19 +483,19 @@ export default function MintToken({ contract }) {
               fontFamily: "'Courier New', monospace",
               fontSize: '0.7rem', fontWeight: 700,
               letterSpacing: '0.2em', textTransform: 'uppercase',
-              color: '#00C896',
+              color: '#2456E6',
               marginBottom: '0.75rem',
             }}>MANUFACTURER VIEW</div>
             <h1 style={{
-              fontFamily: "'Libre Baskerville', serif",
+              fontFamily: 'var(--font-display)',
               fontSize: 'clamp(2.2rem, 5vw, 3.25rem)',
               fontWeight: 700,
-              color: '#0d1f1a',
+              color: '#0F172A',
               lineHeight: 1.1,
               marginBottom: '1rem',
             }}>Mint Reagent Batch</h1>
             <p style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: 'var(--font-body)',
               fontSize: '1.05rem',
               color: '#6B7280',
               lineHeight: 1.8,
@@ -509,11 +507,11 @@ export default function MintToken({ contract }) {
               <span style={{
                 fontFamily: "'Courier New', monospace",
                 fontSize: '0.82rem',
-                background: '#f0faf6',
-                border: '1px solid #c8ddd8',
+                background: '#F1F5FE',
+                border: '1px solid #CBD5E1',
                 padding: '0.1rem 0.45rem',
                 borderRadius: '4px',
-                color: '#00A87E',
+                color: '#1B44C0',
               }}>MANUFACTURER_ROLE</span>.
             </p>
           </div>
@@ -543,7 +541,7 @@ export default function MintToken({ contract }) {
                 border: '1px solid rgba(255,77,77,0.2)',
                 borderLeft: '3px solid #FF4D4D',
                 borderRadius: '12px',
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: 'var(--font-body)',
                 fontSize: '0.9rem', color: '#991B1B',
                 marginBottom: '1.5rem',
               }}>
@@ -560,29 +558,29 @@ export default function MintToken({ contract }) {
                 width: '100%',
                 padding: '1.1rem',
                 borderRadius: '9999px',
-                background: isBusy || !authenticated ? '#9CA3AF' : '#00C896',
+                background: isBusy || !authenticated ? '#9CA3AF' : '#2456E6',
                 color: '#ffffff',
-                fontFamily: "'Libre Baskerville', serif",
+                fontFamily: 'var(--font-display)',
                 fontSize: '1.05rem',
                 fontWeight: 700,
                 border: 'none',
                 cursor: isBusy || !authenticated ? 'not-allowed' : 'pointer',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem',
-                boxShadow: isBusy || !authenticated ? 'none' : '0 8px 28px rgba(0,200,150,0.25)',
+                boxShadow: isBusy || !authenticated ? 'none' : '0 8px 28px rgba(36,86,230,0.25)',
                 transition: 'all 0.2s ease',
                 letterSpacing: '0.01em',
               }}
               onMouseEnter={e => {
                 if (!isBusy && authenticated) {
-                  e.currentTarget.style.background = '#00A87E';
+                  e.currentTarget.style.background = '#1B44C0';
                   e.currentTarget.style.transform  = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow  = '0 12px 36px rgba(0,200,150,0.30)';
+                  e.currentTarget.style.boxShadow  = '0 12px 36px rgba(36,86,230,0.30)';
                 }
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.background = isBusy || !authenticated ? '#9CA3AF' : '#00C896';
+                e.currentTarget.style.background = isBusy || !authenticated ? '#9CA3AF' : '#2456E6';
                 e.currentTarget.style.transform  = 'none';
-                e.currentTarget.style.boxShadow  = isBusy || !authenticated ? 'none' : '0 8px 28px rgba(0,200,150,0.25)';
+                e.currentTarget.style.boxShadow  = isBusy || !authenticated ? 'none' : '0 8px 28px rgba(36,86,230,0.25)';
               }}
             >
               {isGeneratingProof ? (

@@ -1,4 +1,4 @@
-# BioToken System Verification and Operating Guide
+# TraceRx System Verification and Operating Guide
 
 Last verified on 2026-10-11, after the security redesign described in [section 9](#9-findings-and-what-changed). Every result here comes from a command in [section 8](#8-how-to-run-and-re-verify-everything) and can be re-run. The live end-to-end run on Polygon Amoy is recorded in [docs/evidence/](evidence/).
 

@@ -6,7 +6,6 @@ import {
   FlaskConical, Truck, CheckCircle2, ShieldCheck, Beaker,
 } from 'lucide-react';
 import StatusBadge, { STAGES } from '../components/StatusBadge';
-import DNABackground from '../components/DNABackground';
 
 import { useAuth } from '../hooks/useAuth';
 import { useWallets } from '@privy-io/react-auth';
@@ -15,10 +14,10 @@ import { AMOY_RPC_URL, CONTRACT_ADDRESS, CONTRACT_ABI } from '../config';
 
 /* ── status meta ─────────────────────────────────────────────── */
 const STATUS_META = [
-  { color: '#4F46E5', bg: 'rgba(79,70,229,0.08)',   border: '#4F46E5', label: 'MINTED',     icon: <Package     size={16} />, emoji: '🔷' },
+  { color: '#0F172A', bg: 'rgba(15,23,42,0.08)',   border: '#0F172A', label: 'MINTED',     icon: <Package     size={16} />, emoji: '🔷' },
   { color: '#F59E0B', bg: 'rgba(245,158,11,0.08)',  border: '#F59E0B', label: 'IN TRANSIT', icon: <Truck       size={16} />, emoji: '🚚' },
   { color: '#6B7280', bg: 'rgba(107,114,128,0.08)', border: '#6B7280', label: 'RECEIVED',   icon: <CheckCircle2 size={16} />, emoji: '📦' },
-  { color: '#00C896', bg: 'rgba(0,200,150,0.08)',   border: '#00C896', label: 'VERIFIED',   icon: <ShieldCheck  size={16} />, emoji: '✅' },
+  { color: '#2456E6', bg: 'rgba(36,86,230,0.08)',   border: '#2456E6', label: 'VERIFIED',   icon: <ShieldCheck  size={16} />, emoji: '✅' },
   { color: '#FF4D4D', bg: 'rgba(255,77,77,0.08)',   border: '#FF4D4D', label: 'CONSUMED',   icon: <Beaker       size={16} />, emoji: '🧪' },
 ];
 
@@ -75,10 +74,10 @@ function StatsRow({ tokens }) {
               }}>{m.label}</span>
             </div>
             <div style={{
-              fontFamily: "'Libre Baskerville', serif",
+              fontFamily: 'var(--font-display)',
               fontSize: '3rem',
               fontWeight: 700,
-              color: '#0d1f1a',
+              color: '#0F172A',
               lineHeight: 1,
               marginBottom: '0.5rem',
             }}>
@@ -144,7 +143,7 @@ function TokenCard({ token }) {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
           <div>
             <div style={{
-              fontFamily: "'Libre Baskerville', serif",
+              fontFamily: 'var(--font-display)',
               fontWeight: 700,
               fontSize: '1.05rem',
               color: 'var(--text)',
@@ -211,10 +210,10 @@ function FilterTabs({ active, onChange }) {
             style={{
               padding: '0.45rem 1.1rem',
               borderRadius: '9999px',
-              border: `1.5px solid ${isActive ? '#00C896' : '#e0ede9'}`,
-              background: isActive ? '#00C896' : 'transparent',
-              color: isActive ? '#ffffff' : '#0d1f1a',
-              fontFamily: "'Playfair Display', serif",
+              border: `1.5px solid ${isActive ? '#2456E6' : '#E2E8F0'}`,
+              background: isActive ? '#2456E6' : 'transparent',
+              color: isActive ? '#ffffff' : '#0F172A',
+              fontFamily: 'var(--font-body)',
               fontSize: '0.8rem',
               fontWeight: 600,
               cursor: 'pointer',
@@ -223,14 +222,14 @@ function FilterTabs({ active, onChange }) {
             }}
             onMouseEnter={e => {
               if (!isActive) {
-                e.currentTarget.style.borderColor = '#00C896';
-                e.currentTarget.style.color = '#00A87E';
+                e.currentTarget.style.borderColor = '#2456E6';
+                e.currentTarget.style.color = '#1B44C0';
               }
             }}
             onMouseLeave={e => {
               if (!isActive) {
-                e.currentTarget.style.borderColor = '#e0ede9';
-                e.currentTarget.style.color = '#0d1f1a';
+                e.currentTarget.style.borderColor = '#E2E8F0';
+                e.currentTarget.style.color = '#0F172A';
               }
             }}
           >
@@ -248,29 +247,29 @@ function EmptyState() {
     <div style={{
       textAlign: 'center',
       padding: '5rem 2rem',
-      border: '2px dashed #c8ddd8',
+      border: '2px dashed #CBD5E1',
       borderRadius: '16px',
       background: 'rgba(255,255,255,0.7)',
       backdropFilter: 'blur(8px)',
     }}>
       <div style={{
         width: 70, height: 70, borderRadius: '50%',
-        background: 'rgba(0,200,150,0.08)',
+        background: 'rgba(36,86,230,0.08)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         margin: '0 auto 1.5rem',
-        color: '#00C896',
+        color: '#2456E6',
       }}>
         <FlaskConical size={30} />
       </div>
       <h3 style={{
-        fontFamily: "'Libre Baskerville', serif",
+        fontFamily: 'var(--font-display)',
         fontSize: '1.4rem', fontWeight: 700,
-        color: '#0d1f1a', marginBottom: '0.5rem',
+        color: '#0F172A', marginBottom: '0.5rem',
       }}>
         No Batches Found
       </h3>
       <p style={{
-        fontFamily: "'Playfair Display', serif",
+        fontFamily: 'var(--font-body)',
         color: '#6B7280', fontSize: '0.95rem',
         marginBottom: '2rem',
       }}>
@@ -279,11 +278,11 @@ function EmptyState() {
       <Link to="/mint" style={{
         display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
         padding: '0.8rem 1.75rem', borderRadius: '9999px',
-        background: '#00C896', color: '#ffffff',
-        fontFamily: "'Playfair Display', serif",
+        background: '#2456E6', color: '#ffffff',
+        fontFamily: 'var(--font-body)',
         fontWeight: 600, fontSize: '0.9rem',
         textDecoration: 'none',
-        boxShadow: '0 8px 24px rgba(0,200,150,0.2)',
+        boxShadow: '0 8px 24px rgba(36,86,230,0.2)',
         transition: 'all 0.2s ease',
       }}>
         <Package size={16} /> Mint First Batch <ArrowRight size={16} />
@@ -306,22 +305,22 @@ function UnauthState() {
     }}>
       <div style={{
         width: 90, height: 90, borderRadius: '50%',
-        background: 'rgba(0,200,150,0.08)',
+        background: 'rgba(36,86,230,0.08)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         margin: '0 auto 2rem',
-        color: '#00C896',
-        boxShadow: '0 0 0 16px rgba(0,200,150,0.04)',
+        color: '#2456E6',
+        boxShadow: '0 0 0 16px rgba(36,86,230,0.04)',
         animation: 'pulseDot 2.2s ease-in-out infinite',
       }}>
         <FlaskConical size={40} />
       </div>
       <h1 style={{
-        fontFamily: "'Libre Baskerville', serif",
+        fontFamily: 'var(--font-display)',
         fontSize: '2.6rem', fontWeight: 700,
-        color: '#0d1f1a', marginBottom: '0.75rem',
+        color: '#0F172A', marginBottom: '0.75rem',
       }}>Lab Dashboard</h1>
       <p style={{
-        fontFamily: "'Playfair Display', serif",
+        fontFamily: 'var(--font-body)',
         color: '#6B7280', fontSize: '1.05rem',
         maxWidth: 420, margin: '0 auto 2.5rem',
         lineHeight: 1.8,
@@ -331,7 +330,7 @@ function UnauthState() {
       <div style={{
         display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
         padding: '1rem 1.75rem',
-        border: '1.5px dashed #c8ddd8',
+        border: '1.5px dashed #CBD5E1',
         borderRadius: '16px',
         color: '#6B7280',
         fontFamily: "'Courier New', monospace",
@@ -403,7 +402,6 @@ export default function Dashboard({ contract }) {
   return (
     <>
       {/* 3D DNA animated background */}
-      <DNABackground />
 
       <div style={{ position: 'relative', zIndex: 1 }}>
         <div style={{
@@ -432,19 +430,19 @@ export default function Dashboard({ contract }) {
                     fontWeight: 700,
                     letterSpacing: '0.2em',
                     textTransform: 'uppercase',
-                    color: '#00C896',
+                    color: '#2456E6',
                     marginBottom: '0.6rem',
                   }}>MANUFACTURER VIEW</div>
                   <h1 style={{
-                    fontFamily: "'Libre Baskerville', serif",
+                    fontFamily: 'var(--font-display)',
                     fontSize: '3rem',
                     fontWeight: 700,
-                    color: '#0d1f1a',
+                    color: '#0F172A',
                     lineHeight: 1.1,
                     marginBottom: '0.5rem',
                   }}>Reagent Dashboard</h1>
                   <p style={{
-                    fontFamily: "'Playfair Display', serif",
+                    fontFamily: 'var(--font-body)',
                     fontSize: '1.05rem',
                     color: '#6B7280',
                     lineHeight: 1.7,
@@ -458,11 +456,11 @@ export default function Dashboard({ contract }) {
                     display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
                     padding: '0.75rem 1.5rem',
                     borderRadius: '9999px',
-                    background: '#00C896', color: '#ffffff',
-                    fontFamily: "'Playfair Display', serif",
+                    background: '#2456E6', color: '#ffffff',
+                    fontFamily: 'var(--font-body)',
                     fontWeight: 600, fontSize: '0.88rem',
                     textDecoration: 'none',
-                    boxShadow: '0 8px 24px rgba(0,200,150,0.2)',
+                    boxShadow: '0 8px 24px rgba(36,86,230,0.2)',
                     transition: 'all 0.2s ease',
                   }}>
                     <Package size={15} /> Mint New
@@ -475,9 +473,9 @@ export default function Dashboard({ contract }) {
                       padding: '0.75rem 1.5rem',
                       borderRadius: '9999px',
                       background: 'transparent',
-                      border: '1.5px solid #0d1f1a',
-                      color: '#0d1f1a',
-                      fontFamily: "'Playfair Display', serif",
+                      border: '1.5px solid #0F172A',
+                      color: '#0F172A',
+                      fontFamily: 'var(--font-body)',
                       fontWeight: 600, fontSize: '0.88rem',
                       cursor: loading ? 'not-allowed' : 'pointer',
                       opacity: loading ? 0.5 : 1,
@@ -502,7 +500,7 @@ export default function Dashboard({ contract }) {
                   border: '1px solid rgba(255,77,77,0.2)',
                   borderLeft: '3px solid #FF4D4D',
                   borderRadius: '12px',
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: 'var(--font-body)',
                   fontSize: '0.9rem',
                   color: '#991B1B',
                   marginBottom: '1.5rem',
@@ -516,8 +514,8 @@ export default function Dashboard({ contract }) {
                 <div style={{ display: 'flex', justifyContent: 'center', padding: '6rem 0' }}>
                   <div style={{
                     width: 40, height: 40,
-                    border: '3px solid #e0ede9',
-                    borderTop: '3px solid #00C896',
+                    border: '3px solid #E2E8F0',
+                    borderTop: '3px solid #2456E6',
                     borderRadius: '50%',
                     animation: 'spin 0.8s linear infinite',
                   }} />
@@ -540,7 +538,7 @@ export default function Dashboard({ contract }) {
                     <p style={{
                       textAlign: 'center',
                       color: '#6B7280',
-                      fontFamily: "'Playfair Display', serif",
+                      fontFamily: 'var(--font-body)',
                       fontSize: '1rem',
                       padding: '3rem',
                     }}>

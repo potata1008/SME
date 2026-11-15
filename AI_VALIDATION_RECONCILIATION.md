@@ -1,4 +1,4 @@
-# BioToken AI Validation Reconciliation
+# TraceRx AI Validation Reconciliation
 
 Re-verified on 2026-10-04 against the models now in `ai/models/` (the March 2026 models from the original AI module, whose training notebook is `ai/notebooks/05_classifier.ipynb`). Every number below comes from a script in this repo and can be re-run.
 

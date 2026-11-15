@@ -75,7 +75,7 @@ export function buildGoldPackage({ tokenId, batchId, reagentSmiles, peaks, salt,
 /** Parse and sanity-check a Gold Standard package (object or JSON text). */
 export async function parseGoldPackage(input) {
   const pkg = typeof input === 'string' ? JSON.parse(input) : input
-  if (pkg?.type !== GOLD_PACKAGE_TYPE) throw new Error('Not a BioToken Gold Standard package')
+  if (pkg?.type !== GOLD_PACKAGE_TYPE) throw new Error('Not a TraceRx Gold Standard package')
   const peaks = toPeakArray(pkg.peaks)
   const recomputed = await computeCommitment(peaks, pkg.salt)
   if (toBytes32(recomputed) !== String(pkg.commitment).toLowerCase()) {

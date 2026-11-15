@@ -188,7 +188,7 @@ export default function TokenDetails({ contract }) {
     return (
       <div className="page-content" style={{ textAlign: 'center', paddingTop: '5rem' }}>
         <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', marginBottom: '1.25rem' }}>Token Not Found</h2>
-        <p style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', marginBottom: '1.75rem', fontSize: '0.85rem' }}>
+        <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', marginBottom: '1.75rem', fontSize: '0.85rem' }}>
           {error || 'This token ID does not exist on the connected network.'}
         </p>
         <Link to="/dashboard" className="btn btn-outline">← Back to Dashboard</Link>
@@ -235,11 +235,11 @@ export default function TokenDetails({ contract }) {
             </div>
             <div>
               <div className="form-label" style={{ marginBottom: '0.35rem' }}>Expiry Date</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.88rem', color: 'var(--text)' }}>{token.expiry}</div>
+              <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.88rem', color: 'var(--text)' }}>{token.expiry}</div>
             </div>
             <div>
               <div className="form-label" style={{ marginBottom: '0.35rem' }}>Network</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.88rem', color: 'var(--text)' }}>Polygon Amoy</div>
+              <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.88rem', color: 'var(--text)' }}>Polygon Amoy</div>
             </div>
           </div>
 
@@ -262,7 +262,7 @@ export default function TokenDetails({ contract }) {
 
             {(
               <div style={{
-                fontFamily: 'var(--font-mono)', fontSize: '0.76rem', color: 'var(--text-muted)',
+                fontFamily: 'var(--font-body)', fontSize: '0.76rem', color: 'var(--text-muted)',
                 background: 'var(--surface-alt)', padding: '0.75rem 1rem',
                 borderRadius: 'var(--radius-md)', border: '1px solid var(--border)',
                 wordBreak: 'break-all', lineHeight: 1.6,
@@ -295,7 +295,7 @@ export default function TokenDetails({ contract }) {
 
             <div style={{
               marginTop: '0.5rem',
-              fontFamily: 'var(--font-mono)', fontSize: '0.68rem',
+              fontFamily: 'var(--font-body)', fontSize: '0.68rem',
               color: 'var(--text-muted)', wordBreak: 'break-all',
             }}>
               Tolerance ±{token.tolerance} · Reagent {token.reagentSmiles}
@@ -305,7 +305,7 @@ export default function TokenDetails({ contract }) {
               <div style={{
                 display: 'flex', alignItems: 'center', gap: '0.4rem',
                 marginTop: '0.5rem',
-                fontFamily: 'var(--font-mono)', fontSize: '0.68rem',
+                fontFamily: 'var(--font-body)', fontSize: '0.68rem',
                 color: 'var(--accent-dim)',
               }}>
                 <ShieldCheck size={13} />
@@ -360,7 +360,7 @@ export default function TokenDetails({ contract }) {
                         <CheckCircle2 size={14} />
                       </div>
                       <div>
-                        <div style={{ fontFamily: 'var(--font-mono)', fontWeight: 600, fontSize: '0.85rem', color: 'var(--text)' }}>
+                        <div style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: '0.85rem', color: 'var(--text)' }}>
                           {stage.id + 1}. {stage.label}
                         </div>
                       </div>
@@ -374,7 +374,7 @@ export default function TokenDetails({ contract }) {
                         placeholder="Receiving lab address 0x…"
                         style={{
                           flex: '1 1 260px', padding: '0.4rem 0.75rem',
-                          fontFamily: 'var(--font-mono)', fontSize: '0.76rem',
+                          fontFamily: 'var(--font-body)', fontSize: '0.76rem',
                           border: '1px solid var(--border)', borderRadius: 'var(--radius-md)',
                         }}
                       />
